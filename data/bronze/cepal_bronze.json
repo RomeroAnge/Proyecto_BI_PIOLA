@@ -7,7 +7,7 @@
     "context": "public",
     "code": 200,
     "message": "",
-    "timestamp": 1775063032
+    "timestamp": 1775073937
   },
   "body": {
     "metadata": {
@@ -3124,8 +3124,8 @@
   },
   "footer": {
     "records": 35,
-    "elapsed_time": "0.05650",
-    "ip": "181.188.149.18",
+    "elapsed_time": "0.06722",
+    "ip": "181.115.161.168",
     "query": "http://api-cepalstat.cepal.org/cepalstat/api/v1/indicator/2205/data?members=221&lang=es&format=json"
   }
 }
