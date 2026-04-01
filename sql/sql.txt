@@ -1,0 +1,752 @@
+/* ============================================================
+   PROYECTO FINAL BI - GESTIÓN DE RESILIENCIA EN SALUD PÚBLICA
+   CAPA BRONZE / FUENTE TRANSACCIONAL
+   SQL SERVER (T-SQL)
+   ============================================================ */
+
+USE master;
+GO
+
+IF DB_ID('BI_SaludPublicaTarija_Bronze') IS NOT NULL
+BEGIN
+    ALTER DATABASE BI_SaludPublicaTarija_Bronze SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE BI_SaludPublicaTarija_Bronze;
+END;
+GO
+
+CREATE DATABASE BI_SaludPublicaTarija_Bronze;
+GO
+
+USE BI_SaludPublicaTarija_Bronze;
+GO
+
+SET NOCOUNT ON;
+GO
+
+/* ============================================================
+   1. TABLAS MAESTRAS Y TRANSACCIONALES
+   ============================================================ */
+
+CREATE TABLE Rol (
+    idRol UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    nombre NVARCHAR(60) NOT NULL UNIQUE,
+    descripcion NVARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Usuario (
+    idUsuario UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    nombreCompleto NVARCHAR(120) NOT NULL,
+    email NVARCHAR(120) NOT NULL UNIQUE,
+    [password] NVARCHAR(200) NOT NULL,
+    idRol UNIQUEIDENTIFIER NOT NULL,
+    estado NVARCHAR(20) NOT NULL,
+    autenticado BIT NOT NULL DEFAULT 0,
+    CONSTRAINT FK_Usuario_Rol FOREIGN KEY (idRol) REFERENCES Rol(idRol),
+    CONSTRAINT CHK_Usuario_Estado CHECK (estado IN ('ACTIVO','INACTIVO','SUSPENDIDO'))
+);
+
+CREATE TABLE Geografia (
+    idGeografia UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    departamento NVARCHAR(60) NOT NULL,
+    ciudad NVARCHAR(60) NOT NULL,
+    zona NVARCHAR(80) NULL,
+    area NVARCHAR(20) NOT NULL,
+    establecimientoReferencia NVARCHAR(120) NULL,
+    CONSTRAINT CHK_Geografia_Area CHECK (area IN ('URBANA','RURAL'))
+);
+
+CREATE TABLE CentroSalud (
+    idCentro UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    nombre NVARCHAR(150) NOT NULL,
+    tipo NVARCHAR(50) NOT NULL,
+    nivelAtencion TINYINT NOT NULL,
+    idGeografia UNIQUEIDENTIFIER NOT NULL,
+    direccion NVARCHAR(180) NULL,
+    telefono NVARCHAR(20) NULL,
+    capacidadDiaria INT NOT NULL,
+    estado NVARCHAR(20) NOT NULL,
+    CONSTRAINT FK_CentroSalud_Geografia FOREIGN KEY (idGeografia) REFERENCES Geografia(idGeografia),
+    CONSTRAINT CHK_CentroSalud_Nivel CHECK (nivelAtencion IN (1,2,3)),
+    CONSTRAINT CHK_CentroSalud_Estado CHECK (estado IN ('ACTIVO','MANTENIMIENTO'))
+);
+
+CREATE TABLE Administrador (
+    idAdmin UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    idUsuario UNIQUEIDENTIFIER NOT NULL UNIQUE,
+    nivelAcceso NVARCHAR(50) NOT NULL,
+    departamento NVARCHAR(80) NOT NULL,
+    CONSTRAINT FK_Administrador_Usuario FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+CREATE TABLE Especialidad (
+    idEspecialidad UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    nombre NVARCHAR(80) NOT NULL UNIQUE,
+    descripcion NVARCHAR(250) NOT NULL
+);
+
+CREATE TABLE Paciente (
+    idPaciente UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    idUsuario UNIQUEIDENTIFIER NOT NULL UNIQUE,
+    idGeografia UNIQUEIDENTIFIER NOT NULL,
+    fechaNacimiento DATE NOT NULL,
+    sexo CHAR(1) NOT NULL,
+    direccion NVARCHAR(180) NULL,
+    telefono NVARCHAR(20) NULL,
+    correoAlternativo NVARCHAR(120) NULL,
+    numeroDocumento NVARCHAR(25) NOT NULL UNIQUE,
+    CONSTRAINT FK_Paciente_Usuario FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+    CONSTRAINT FK_Paciente_Geografia FOREIGN KEY (idGeografia) REFERENCES Geografia(idGeografia),
+    CONSTRAINT CHK_Paciente_Sexo CHECK (sexo IN ('M','F'))
+);
+
+CREATE TABLE Medico (
+    idMedico UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    idUsuario UNIQUEIDENTIFIER NOT NULL UNIQUE,
+    idCentro UNIQUEIDENTIFIER NOT NULL,
+    numeroColegiado NVARCHAR(30) NOT NULL UNIQUE,
+    especialidadPrincipal NVARCHAR(80) NOT NULL,
+    telefonoContacto NVARCHAR(20) NULL,
+    CONSTRAINT FK_Medico_Usuario FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+    CONSTRAINT FK_Medico_Centro FOREIGN KEY (idCentro) REFERENCES CentroSalud(idCentro)
+);
+
+CREATE TABLE HorarioMedico (
+    idHorario UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    idMedico UNIQUEIDENTIFIER NOT NULL,
+    idEspecialidad UNIQUEIDENTIFIER NOT NULL,
+    diaSemana NVARCHAR(15) NOT NULL,
+    horaInicio TIME NOT NULL,
+    horaFin TIME NOT NULL,
+    CONSTRAINT FK_HorarioMedico_Medico FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
+    CONSTRAINT FK_HorarioMedico_Especialidad FOREIGN KEY (idEspecialidad) REFERENCES Especialidad(idEspecialidad),
+    CONSTRAINT CHK_Horario_Dia CHECK (diaSemana IN ('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado')),
+    CONSTRAINT CHK_Horario_Horas CHECK (horaFin > horaInicio)
+);
+
+CREATE TABLE CampanaMedica (
+    codigoCampana UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    idAdmin UNIQUEIDENTIFIER NOT NULL,
+    idCentro UNIQUEIDENTIFIER NOT NULL,
+    tipo NVARCHAR(80) NOT NULL,
+    titulo NVARCHAR(150) NOT NULL,
+    descripcion NVARCHAR(300) NOT NULL,
+    imagenUrl NVARCHAR(200) NULL,
+    fechaInicio DATE NOT NULL,
+    fechaFin DATE NOT NULL,
+    lugar NVARCHAR(120) NOT NULL,
+    requisitos NVARCHAR(200) NULL,
+    publicoObjetivo NVARCHAR(150) NULL,
+    estado NVARCHAR(20) NOT NULL,
+    fechaCreacion DATETIME2 NOT NULL,
+    fechaModificacion DATETIME2 NOT NULL,
+    CONSTRAINT FK_CampanaMedica_Administrador FOREIGN KEY (idAdmin) REFERENCES Administrador(idAdmin),
+    CONSTRAINT FK_CampanaMedica_Centro FOREIGN KEY (idCentro) REFERENCES CentroSalud(idCentro),
+    CONSTRAINT CHK_CampanaMedica_Estado CHECK (estado IN ('PLANIFICADA','ACTIVA','FINALIZADA')),
+    CONSTRAINT CHK_CampanaMedica_Fechas CHECK (fechaFin >= fechaInicio)
+);
+
+CREATE TABLE FichaMedica (
+    codigoFicha UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    idPaciente UNIQUEIDENTIFIER NOT NULL,
+    idMedico UNIQUEIDENTIFIER NOT NULL,
+    idEspecialidad UNIQUEIDENTIFIER NOT NULL,
+    idHorario UNIQUEIDENTIFIER NULL,
+    idCentro UNIQUEIDENTIFIER NOT NULL,
+    fechaHoraReserva DATETIME2 NOT NULL,
+    fechaHoraAtencion DATETIME2 NULL,
+    estado NVARCHAR(20) NOT NULL,
+    prioridad NVARCHAR(20) NOT NULL,
+    canalReserva NVARCHAR(20) NOT NULL,
+    tiempoEsperaMin INT NULL,
+    motivoReprogramacion NVARCHAR(200) NULL,
+    resultadoAtencion NVARCHAR(250) NULL,
+    indicaciones NVARCHAR(250) NULL,
+    diagnostico NVARCHAR(250) NULL,
+    fechaCreacion DATETIME2 NOT NULL,
+    fechaModificacion DATETIME2 NOT NULL,
+    CONSTRAINT FK_FichaMedica_Paciente FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+    CONSTRAINT FK_FichaMedica_Medico FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
+    CONSTRAINT FK_FichaMedica_Especialidad FOREIGN KEY (idEspecialidad) REFERENCES Especialidad(idEspecialidad),
+    CONSTRAINT FK_FichaMedica_Horario FOREIGN KEY (idHorario) REFERENCES HorarioMedico(idHorario),
+    CONSTRAINT FK_FichaMedica_Centro FOREIGN KEY (idCentro) REFERENCES CentroSalud(idCentro),
+    CONSTRAINT CHK_FichaMedica_Estado CHECK (estado IN ('RESERVADA','ATENDIDA','AUSENTE','CANCELADA')),
+    CONSTRAINT CHK_FichaMedica_Prioridad CHECK (prioridad IN ('BAJA','MEDIA','ALTA')),
+    CONSTRAINT CHK_FichaMedica_Canal CHECK (canalReserva IN ('VENTANILLA','WEB','REFERENCIA','CALLCENTER')),
+    CONSTRAINT CHK_FichaMedica_Fechas CHECK (fechaHoraAtencion IS NULL OR fechaHoraAtencion >= fechaHoraReserva)
+);
+GO
+
+/* ============================================================
+   2. CARGA DE TABLAS MAESTRAS
+   ============================================================ */
+
+INSERT INTO Rol (idRol, nombre, descripcion)
+VALUES
+(NEWID(), 'Administrador', 'Control total del sistema'),
+(NEWID(), 'Medico', 'Atención clínica y gestión de agenda'),
+(NEWID(), 'Paciente', 'Solicita y consulta fichas médicas'),
+(NEWID(), 'Personal Administrativo', 'Gestión operativa de ventanilla'),
+(NEWID(), 'Director Hospital', 'Supervisión y toma de decisiones'),
+(NEWID(), 'Jefe de Estadistica', 'Análisis operativo y reportes'),
+(NEWID(), 'Analista BI', 'Exploración y análisis de datos'),
+(NEWID(), 'Auditor', 'Revisión de trazabilidad y cumplimiento'),
+(NEWID(), 'Recepcionista', 'Registro de pacientes'),
+(NEWID(), 'Enfermeria', 'Apoyo asistencial y campañas'),
+(NEWID(), 'Supervisor Turno', 'Control de turnos y cupos'),
+(NEWID(), 'Tecnico TI', 'Soporte e infraestructura'),
+(NEWID(), 'Promotor Salud', 'Campañas preventivas en territorio'),
+(NEWID(), 'Coordinador Red', 'Coordinación interinstitucional'),
+(NEWID(), 'Invitado', 'Acceso restringido de consulta');
+
+INSERT INTO Geografia (idGeografia, departamento, ciudad, zona, area, establecimientoReferencia)
+VALUES
+(NEWID(), 'Tarija', 'Tarija', 'Centro', 'URBANA', 'Hospital Regional San Juan de Dios'),
+(NEWID(), 'Tarija', 'Yacuiba', 'Barrio Nuevo', 'URBANA', 'Hospital Rubén Zelaya'),
+(NEWID(), 'Tarija', 'Bermejo', 'Avaroa', 'URBANA', 'Centro Integral Bermejo'),
+(NEWID(), 'Tarija', 'Villa Montes', 'Central', 'URBANA', 'Hospital Básico Villa Montes'),
+(NEWID(), 'Santa Cruz', 'Santa Cruz de la Sierra', 'Plan 3000', 'URBANA', 'Hospital Japonés'),
+(NEWID(), 'Santa Cruz', 'Montero', 'Norte', 'URBANA', 'Hospital de Montero'),
+(NEWID(), 'Santa Cruz', 'Warnes', 'Centro', 'URBANA', 'Hospital Municipal de Warnes'),
+(NEWID(), 'La Paz', 'La Paz', 'Miraflores', 'URBANA', 'Hospital de Clínicas'),
+(NEWID(), 'La Paz', 'El Alto', 'Ciudad Satelite', 'URBANA', 'Hospital del Norte'),
+(NEWID(), 'Cochabamba', 'Cochabamba', 'Centro', 'URBANA', 'Hospital Viedma'),
+(NEWID(), 'Cochabamba', 'Sacaba', 'Pacata', 'URBANA', 'Hospital México'),
+(NEWID(), 'Chuquisaca', 'Sucre', 'Lajastambo', 'URBANA', 'Hospital Santa Bárbara'),
+(NEWID(), 'Potosi', 'Potosi', 'Zona Alta', 'URBANA', 'Hospital Daniel Bracamonte'),
+(NEWID(), 'Potosi', 'Tupiza', 'Centro', 'URBANA', 'Hospital Eduardo Eguía'),
+(NEWID(), 'Oruro', 'Oruro', '  centro  ', 'URBANA', 'Hospital San Juan de Dios'),
+(NEWID(), 'Beni', 'Trinidad', 'Plazuela', 'URBANA', 'Hospital Germán Busch'),
+(NEWID(), 'Pando', 'Cobija', 'Centro', 'URBANA', 'Hospital Roberto Galindo'),
+(NEWID(), 'Beni', 'Riberalta', 'Mercado', 'URBANA', 'Hospital Riberalta');
+
+INSERT INTO CentroSalud (idCentro, nombre, tipo, nivelAtencion, idGeografia, direccion, telefono, capacidadDiaria, estado)
+SELECT NEWID(), V.nombre, V.tipo, V.nivelAtencion, G.idGeografia, V.direccion, V.telefono, V.capacidadDiaria, V.estado
+FROM (
+    VALUES
+    ('Hospital Regional San Juan de Dios', 'Hospital', 3, 'Tarija', 'Av. Circunvalación s/n', '46612345', 420, 'ACTIVO'),
+    ('Centro de Salud San Jorge', 'Centro de Salud', 1, 'Tarija', 'Barrio San Jorge', '46612456', 120, 'ACTIVO'),
+    ('Hospital Rubén Zelaya', 'Hospital', 2, 'Yacuiba', 'Zona Central', '46822111', 260, 'ACTIVO'),
+    ('Centro Materno Infantil Yacuiba', 'Centro de Salud', 1, 'Yacuiba', 'Barrio Ferroviario', '46822119', 110, 'ACTIVO'),
+    ('Centro Integral Bermejo', 'Hospital', 2, 'Bermejo', 'Av. Petrolera', '46988210', 180, 'ACTIVO'),
+    ('Centro de Salud Avaroa', 'Centro de Salud', 1, 'Bermejo', 'Zona Avaroa', '46988225', 95, 'ACTIVO'),
+    ('Hospital Básico Villa Montes', 'Hospital', 2, 'Villa Montes', 'Barrio Ferroviario', '46765210', 170, 'ACTIVO'),
+    ('Centro de Salud San Antonio', 'Centro de Salud', 1, 'Villa Montes', 'San Antonio', '46765244', 90, 'ACTIVO'),
+    ('Hospital Japonés', 'Hospital', 3, 'Santa Cruz de la Sierra', 'Av. Paurito', '33456789', 500, 'ACTIVO'),
+    ('Hospital de Montero', 'Hospital', 2, 'Montero', 'Zona Norte', '39222118', 230, 'ACTIVO'),
+    ('Hospital de Clínicas', 'Hospital', 3, 'La Paz', 'Miraflores', '22234567', 480, 'ACTIVO'),
+    ('Hospital del Norte', 'Hospital', 2, 'El Alto', 'Ciudad Satelite', '22888211', 300, 'ACTIVO'),
+    ('Hospital Viedma', 'Hospital', 3, 'Cochabamba', 'Av. Aniceto Arce', '44567123', 430, 'ACTIVO'),
+    ('Hospital Santa Bárbara', 'Hospital', 2, 'Sucre', 'Centro Histórico', '46422789', 210, 'ACTIVO'),
+    ('Hospital Germán Busch', 'Hospital', 2, 'Trinidad', 'Plazuela Principal', '34611223', 160, 'ACTIVO')
+) V(nombre, tipo, nivelAtencion, ciudad, direccion, telefono, capacidadDiaria, estado)
+INNER JOIN Geografia G
+    ON G.ciudad = V.ciudad;
+
+INSERT INTO Especialidad (idEspecialidad, nombre, descripcion)
+VALUES
+(NEWID(), 'Medicina General', 'Atención primaria integral del paciente'),
+(NEWID(), 'Pediatría', 'Atención médica infantil'),
+(NEWID(), 'Ginecología', 'Salud integral de la mujer'),
+(NEWID(), 'Traumatología', 'Atención de lesiones osteomusculares'),
+(NEWID(), 'Medicina Interna', 'Diagnóstico y tratamiento integral del adulto'),
+(NEWID(), 'Cardiología', 'Atención de enfermedades cardiovasculares'),
+(NEWID(), 'Neurología', 'Atención de trastornos del sistema nervioso'),
+(NEWID(), 'Dermatología', 'Atención de enfermedades de la piel'),
+(NEWID(), 'Odontología', 'Salud oral y prevención bucodental'),
+(NEWID(), 'Oftalmología', 'Atención visual y ocular'),
+(NEWID(), 'Neumología', 'Atención respiratoria'),
+(NEWID(), 'Endocrinología', 'Atención de trastornos hormonales'),
+(NEWID(), 'Urología', 'Atención del sistema urinario'),
+(NEWID(), 'Psicología', 'Apoyo y atención en salud mental'),
+(NEWID(), 'Nutrición', 'Evaluación y consejería alimentaria');
+GO
+
+/* ============================================================
+   3. GENERACIÓN DE USUARIOS, PACIENTES, MÉDICOS Y ADMINS
+   ============================================================ */
+
+DECLARE @RolAdmin UNIQUEIDENTIFIER = (SELECT idRol FROM Rol WHERE nombre = 'Administrador');
+DECLARE @RolMedico UNIQUEIDENTIFIER = (SELECT idRol FROM Rol WHERE nombre = 'Medico');
+DECLARE @RolPaciente UNIQUEIDENTIFIER = (SELECT idRol FROM Rol WHERE nombre = 'Paciente');
+
+DECLARE @Admins TABLE (
+    idAdmin UNIQUEIDENTIFIER,
+    idUsuario UNIQUEIDENTIFIER,
+    nombreCompleto NVARCHAR(120),
+    email NVARCHAR(120),
+    nivelAcceso NVARCHAR(50),
+    departamento NVARCHAR(80)
+);
+
+INSERT INTO @Admins
+VALUES
+(NEWID(), NEWID(), 'Mariela Vargas Flores', 'mariela.vargas@sedestarija.gob.bo', 'ALTO', 'Planificación'),
+(NEWID(), NEWID(), 'Carlos Rojas Aguilar', 'carlos.rojas@sedestarija.gob.bo', 'ALTO', 'Estadística'),
+(NEWID(), NEWID(), 'Ana Lucia Mendoza Soria', 'ana.mendoza@sedestarija.gob.bo', 'MEDIO', 'Operaciones'),
+(NEWID(), NEWID(), 'Diego Fernandez Lopez', 'diego.fernandez@sedestarija.gob.bo', 'ALTO', 'Campañas'),
+(NEWID(), NEWID(), 'Ruben Choque Mamani', 'ruben.choque@sedestarija.gob.bo', 'MEDIO', 'Tecnología');
+
+INSERT INTO Usuario (idUsuario, nombreCompleto, email, [password], idRol, estado, autenticado)
+SELECT
+    idUsuario,
+    nombreCompleto,
+    email,
+    'Admin#2026',
+    @RolAdmin,
+    'ACTIVO',
+    1
+FROM @Admins;
+
+INSERT INTO Administrador (idAdmin, idUsuario, nivelAcceso, departamento)
+SELECT idAdmin, idUsuario, nivelAcceso, departamento
+FROM @Admins;
+
+/* ---------- tablas auxiliares para nombres ---------- */
+CREATE TABLE #Nombres (
+    nombre NVARCHAR(30)
+);
+
+CREATE TABLE #Apellidos (
+    apellido NVARCHAR(30)
+);
+
+INSERT INTO #Nombres (nombre)
+VALUES
+('Juan'),('Maria'),('Luis'),('Ana'),('Carlos'),
+('Gabriela'),('Diego'),('Fernanda'),('Jose'),('Lucia'),
+('Marco'),('Valeria'),('Miguel'),('Daniela'),('Andres'),
+('Carla'),('Ruben'),('Camila'),('Pedro'),('Natalia');
+
+INSERT INTO #Apellidos (apellido)
+VALUES
+('Flores'),('Rodriguez'),('Vargas'),('Choque'),('Mamani'),
+('Perez'),('Gutierrez'),('Lopez'),('Fernandez'),('Condori'),
+('Rojas'),('Aguilar'),('Soria'),('Villca'),('Mendoza');
+
+/* ---------- generar pacientes ---------- */
+DECLARE
+    @i INT = 1,
+    @idUsuario UNIQUEIDENTIFIER,
+    @idPaciente UNIQUEIDENTIFIER,
+    @idGeografia UNIQUEIDENTIFIER,
+    @ciudad NVARCHAR(60),
+    @nombre1 NVARCHAR(30),
+    @apellido1 NVARCHAR(30),
+    @apellido2 NVARCHAR(30),
+    @nombreCompleto NVARCHAR(120),
+    @sexo CHAR(1),
+    @direccion NVARCHAR(180),
+    @telefono NVARCHAR(20),
+    @correoAlt NVARCHAR(120),
+    @numeroDocumento NVARCHAR(25),
+    @fechaNacimiento DATE;
+
+WHILE @i <= 65
+BEGIN
+    SET @idUsuario = NEWID();
+    SET @idPaciente = NEWID();
+
+    SELECT TOP 1 @nombre1 = nombre FROM #Nombres ORDER BY NEWID();
+    SELECT TOP 1 @apellido1 = apellido FROM #Apellidos ORDER BY NEWID();
+    SELECT TOP 1 @apellido2 = apellido FROM #Apellidos ORDER BY NEWID();
+    SELECT TOP 1 @idGeografia = idGeografia, @ciudad = ciudad FROM Geografia ORDER BY NEWID();
+
+    SET @nombreCompleto = CONCAT(@nombre1, ' ', @apellido1, ' ', @apellido2);
+
+    -- introducir registros "sucios" deliberadamente
+    IF @i IN (13, 27, 41, 55)
+        SET @nombreCompleto = CONCAT('  ', LOWER(@nombre1), ' ', UPPER(@apellido1), ' ', @apellido2, '  ');
+
+    SET @sexo = CASE WHEN ABS(CHECKSUM(NEWID())) % 2 = 0 THEN 'M' ELSE 'F' END;
+    SET @fechaNacimiento = DATEADD(DAY, -((18 + ABS(CHECKSUM(NEWID())) % 55) * 365), CAST(GETDATE() AS DATE));
+    SET @direccion = CONCAT('Barrio ', CAST(1 + ABS(CHECKSUM(NEWID())) % 60 AS VARCHAR(3)), ' - ', @ciudad);
+    SET @telefono = CONCAT('7', RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7));
+    SET @correoAlt = CONCAT('pac.alt.', RIGHT('000' + CAST(@i AS VARCHAR(3)), 3), '@mail.com');
+    SET @numeroDocumento = CONCAT('10', RIGHT('000000' + CAST(@i AS VARCHAR(6)), 6), 'BN');
+
+    -- 5% aproximadamente de nulls en campos no críticos
+    IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @direccion = NULL;
+    IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @telefono = NULL;
+    IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @correoAlt = NULL;
+
+    INSERT INTO Usuario (idUsuario, nombreCompleto, email, [password], idRol, estado, autenticado)
+    VALUES (
+        @idUsuario,
+        @nombreCompleto,
+        CONCAT('paciente', RIGHT('000' + CAST(@i AS VARCHAR(3)), 3), '@correo.bo'),
+        'Paciente#2026',
+        @RolPaciente,
+        CASE WHEN @i % 17 = 0 THEN 'INACTIVO' ELSE 'ACTIVO' END,
+        CASE WHEN @i % 4 = 0 THEN 1 ELSE 0 END
+    );
+
+    INSERT INTO Paciente (
+        idPaciente, idUsuario, idGeografia, fechaNacimiento, sexo,
+        direccion, telefono, correoAlternativo, numeroDocumento
+    )
+    VALUES (
+        @idPaciente, @idUsuario, @idGeografia, @fechaNacimiento, @sexo,
+        @direccion, @telefono, @correoAlt, @numeroDocumento
+    );
+
+    SET @i += 1;
+END;
+
+/* ---------- generar médicos ---------- */
+DECLARE
+    @m INT = 1,
+    @idMedico UNIQUEIDENTIFIER,
+    @idCentro UNIQUEIDENTIFIER,
+    @especialidadPrincipal NVARCHAR(80),
+    @telefonoMedico NVARCHAR(20);
+
+WHILE @m <= 20
+BEGIN
+    SET @idUsuario = NEWID();
+    SET @idMedico = NEWID();
+
+    SELECT TOP 1 @nombre1 = nombre FROM #Nombres ORDER BY NEWID();
+    SELECT TOP 1 @apellido1 = apellido FROM #Apellidos ORDER BY NEWID();
+    SELECT TOP 1 @apellido2 = apellido FROM #Apellidos ORDER BY NEWID();
+    SELECT TOP 1 @idCentro = idCentro FROM CentroSalud ORDER BY NEWID();
+    SELECT TOP 1 @especialidadPrincipal = nombre FROM Especialidad ORDER BY NEWID();
+
+    SET @nombreCompleto = CONCAT(@nombre1, ' ', @apellido1, ' ', @apellido2);
+
+    IF @m IN (6, 18)
+        SET @nombreCompleto = CONCAT('  ', @nombre1, ' ', LOWER(@apellido1), ' ', UPPER(@apellido2), '  ');
+
+    SET @telefonoMedico = CONCAT('7', RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7));
+    IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @telefonoMedico = NULL;
+
+    INSERT INTO Usuario (idUsuario, nombreCompleto, email, [password], idRol, estado, autenticado)
+    VALUES (
+        @idUsuario,
+        @nombreCompleto,
+        CONCAT('medico', RIGHT('000' + CAST(@m AS VARCHAR(3)), 3), '@salud.bo'),
+        'Medico#2026',
+        @RolMedico,
+        'ACTIVO',
+        1
+    );
+
+    INSERT INTO Medico (
+        idMedico, idUsuario, idCentro, numeroColegiado, especialidadPrincipal, telefonoContacto
+    )
+    VALUES (
+        @idMedico,
+        @idUsuario,
+        @idCentro,
+        CONCAT('COL-TJA-', RIGHT('0000' + CAST(@m AS VARCHAR(4)), 4)),
+        @especialidadPrincipal,
+        @telefonoMedico
+    );
+
+    SET @m += 1;
+END;
+
+/* ---------- horarios médicos ---------- */
+INSERT INTO HorarioMedico (idHorario, idMedico, idEspecialidad, diaSemana, horaInicio, horaFin)
+SELECT
+    NEWID(),
+    M.idMedico,
+    E.idEspecialidad,
+    CASE ABS(CHECKSUM(NEWID())) % 6
+        WHEN 0 THEN 'Lunes'
+        WHEN 1 THEN 'Martes'
+        WHEN 2 THEN 'Miercoles'
+        WHEN 3 THEN 'Jueves'
+        WHEN 4 THEN 'Viernes'
+        ELSE 'Sabado'
+    END,
+    CAST('07:30' AS TIME),
+    CAST('12:30' AS TIME)
+FROM Medico M
+INNER JOIN Especialidad E
+    ON E.nombre = M.especialidadPrincipal;
+
+INSERT INTO HorarioMedico (idHorario, idMedico, idEspecialidad, diaSemana, horaInicio, horaFin)
+SELECT
+    NEWID(),
+    M.idMedico,
+    E.idEspecialidad,
+    CASE ABS(CHECKSUM(NEWID())) % 6
+        WHEN 0 THEN 'Lunes'
+        WHEN 1 THEN 'Martes'
+        WHEN 2 THEN 'Miercoles'
+        WHEN 3 THEN 'Jueves'
+        WHEN 4 THEN 'Viernes'
+        ELSE 'Sabado'
+    END,
+    CAST('13:30' AS TIME),
+    CAST('17:30' AS TIME)
+FROM Medico M
+INNER JOIN Especialidad E
+    ON E.nombre = M.especialidadPrincipal;
+GO
+
+/* ============================================================
+   4. CAMPAÑAS MÉDICAS (>= 15 registros)
+   ============================================================ */
+
+INSERT INTO CampanaMedica (
+    codigoCampana, idAdmin, idCentro, tipo, titulo, descripcion, imagenUrl,
+    fechaInicio, fechaFin, lugar, requisitos, publicoObjetivo, estado,
+    fechaCreacion, fechaModificacion
+)
+SELECT
+    NEWID(),
+    A.idAdmin,
+    C.idCentro,
+    V.tipo,
+    V.titulo,
+    V.descripcion,
+    V.imagenUrl,
+    DATEADD(DAY, V.diasInicio, CAST(GETDATE() AS DATE)),
+    DATEADD(DAY, V.diasFin, CAST(GETDATE() AS DATE)),
+    V.lugar,
+    V.requisitos,
+    V.publicoObjetivo,
+    V.estado,
+    DATEADD(DAY, V.diasInicio - 10, CAST(GETDATE() AS DATETIME2)),
+    DATEADD(DAY, V.diasInicio - 2, CAST(GETDATE() AS DATETIME2))
+FROM (
+    VALUES
+    ('Hospital Regional San Juan de Dios', 'Vacunación', 'Campaña de Vacunación Antigripal', 'Vacunación preventiva para grupos vulnerables en temporada invernal.', NULL, -320, -315, 'Tarija', 'Carnet SUS', 'Niños y adultos mayores', 'FINALIZADA'),
+    ('Centro de Salud San Jorge', 'Prevención', 'control prenatal seguro', 'Charlas y controles prenatales para mujeres gestantes del área urbana.', NULL, -280, -278, 'Tarija', NULL, 'Mujeres embarazadas', 'FINALIZADA'),
+    ('Hospital Rubén Zelaya', 'Prevención', 'Campaña de prevención del dengue', 'Educación comunitaria, fumigación focal y entrega de material preventivo.', NULL, -250, -245, 'Yacuiba', 'Documento de identidad', 'Población general', 'FINALIZADA'),
+    ('Centro Materno Infantil Yacuiba', 'Nutrición', 'Jornadas de evaluación nutricional infantil', 'Tamizaje nutricional para menores de 5 años.', NULL, -230, -228, 'Yacuiba', NULL, 'Niños menores de 5 años', 'FINALIZADA'),
+    ('Centro Integral Bermejo', 'Respiratoria', 'Campaña IRA invierno', 'Atención y prevención de infecciones respiratorias agudas.', NULL, -210, -205, 'Bermejo', NULL, 'Población vulnerable', 'FINALIZADA'),
+    ('Centro de Salud Avaroa', 'Vacunación', 'Vacunación escolar', 'Inmunización de refuerzo a estudiantes de unidades educativas.', NULL, -190, -188, 'Bermejo', 'Carnet escolar', 'Escolares', 'FINALIZADA'),
+    ('Hospital Básico Villa Montes', 'Salud Mental', 'Campaña de bienestar emocional', 'Orientación psicológica y sesiones breves de apoyo emocional.', NULL, -175, -172, 'Villa Montes', NULL, 'Adolescentes y jóvenes', 'FINALIZADA'),
+    ('Centro de Salud San Antonio', 'Prevención', 'Control de presión arterial', 'Tamizaje de hipertensión en mayores de 40 años.', NULL, -160, -158, 'Villa Montes', NULL, 'Adultos mayores', 'FINALIZADA'),
+    ('Hospital Japonés', 'Vacunación', 'Campaña COVID refuerzo', 'Vacunación de refuerzo y educación preventiva.', '  https://img.salud.bo/covid_refuerzo.jpg  ', -140, -135, 'Santa Cruz', 'Carnet de vacunación', 'Población general', 'FINALIZADA'),
+    ('Hospital de Montero', 'Prevención', 'Feria de salud comunitaria', 'Atención preventiva y educación en hábitos saludables.', NULL, -120, -118, 'Montero', NULL, 'Población general', 'FINALIZADA'),
+    ('Hospital de Clínicas', 'Especializada', 'Tamizaje cardiovascular', 'Evaluación de riesgo cardiovascular en pacientes priorizados.', NULL, -95, -92, 'La Paz', 'Referencia médica', 'Pacientes crónicos', 'FINALIZADA'),
+    ('Hospital del Norte', 'Respiratoria', '  campaña de bronquiolitis  ', 'Detección temprana y orientación respiratoria pediátrica.', NULL, -80, -76, 'El Alto', NULL, 'Niños menores de 2 años', 'FINALIZADA'),
+    ('Hospital Viedma', 'Prevención', 'Jornada de salud integral', 'Controles preventivos y orientación médica multidisciplinaria.', NULL, -60, -58, 'Cochabamba', NULL, 'Población general', 'FINALIZADA'),
+    ('Hospital Santa Bárbara', 'Vacunación', 'Vacunación VPH', 'Campaña preventiva para adolescentes y jóvenes.', NULL, -45, -42, 'Sucre', 'Consentimiento informado', 'Adolescentes', 'FINALIZADA'),
+    ('Hospital Germán Busch', 'Nutrición', 'Consejería nutricional familiar', 'Orientación alimentaria en hogares con riesgo nutricional.', NULL, -25, -23, 'Trinidad', NULL, 'Familias', 'FINALIZADA'),
+    ('Hospital Regional San Juan de Dios', 'Prevención', 'Campaña contra el dengue 2026', 'Actividades preventivas antes del pico estacional.', NULL, -10, -5, 'Tarija', NULL, 'Población general', 'ACTIVA'),
+    ('Centro de Salud San Jorge', 'Respiratoria', 'Prevención de IRA en invierno', 'Difusión de medidas preventivas y atención temprana.', NULL, -8, -3, 'Tarija', NULL, 'Adultos mayores y niños', 'ACTIVA'),
+    ('Hospital Rubén Zelaya', 'Vacunación', 'Refuerzo influenza 2026', 'Aplicación de dosis de refuerzo en población priorizada.', NULL, -5, 2, 'Yacuiba', 'Carnet SUS', 'Población priorizada', 'ACTIVA')
+) V(nombreCentro, tipo, titulo, descripcion, imagenUrl, diasInicio, diasFin, lugar, requisitos, publicoObjetivo, estado)
+INNER JOIN CentroSalud C
+    ON C.nombre = V.nombreCentro
+CROSS APPLY (
+    SELECT TOP 1 idAdmin
+    FROM Administrador
+    ORDER BY NEWID()
+) A;
+GO
+
+/* ============================================================
+   5. GENERACIÓN MASIVA DE FICHAS MÉDICAS (>= 1000 registros)
+   ============================================================ */
+
+DECLARE
+    @totalFichas INT = 1200,
+    @j INT = 1,
+    @codigoFicha UNIQUEIDENTIFIER,
+    @idPaciente UNIQUEIDENTIFIER,
+    @idMedico UNIQUEIDENTIFIER,
+    @idEspecialidad UNIQUEIDENTIFIER,
+    @idHorario UNIQUEIDENTIFIER,
+    @idCentro UNIQUEIDENTIFIER,
+    @fechaReserva DATETIME2,
+    @fechaAtencion DATETIME2,
+    @estado NVARCHAR(20),
+    @prioridad NVARCHAR(20),
+    @canal NVARCHAR(20),
+    @tiempoEspera INT,
+    @motivoReprogramacion NVARCHAR(200),
+    @resultadoAtencion NVARCHAR(250),
+    @indicaciones NVARCHAR(250),
+    @diagnostico NVARCHAR(250),
+    @random INT,
+    @diasAtras INT,
+    @minutosDia INT;
+
+WHILE @j <= @totalFichas
+BEGIN
+    SET @codigoFicha = NEWID();
+
+    SELECT TOP 1
+        @idPaciente = P.idPaciente
+    FROM Paciente P
+    ORDER BY NEWID();
+
+    SELECT TOP 1
+        @idMedico = M.idMedico,
+        @idCentro = M.idCentro,
+        @idEspecialidad = E.idEspecialidad
+    FROM Medico M
+    INNER JOIN Especialidad E
+        ON E.nombre = M.especialidadPrincipal
+    ORDER BY NEWID();
+
+    SELECT TOP 1
+        @idHorario = H.idHorario
+    FROM HorarioMedico H
+    WHERE H.idMedico = @idMedico
+      AND H.idEspecialidad = @idEspecialidad
+    ORDER BY NEWID();
+
+    SET @diasAtras = ABS(CHECKSUM(NEWID())) % 1095;  -- últimos 3 años aprox.
+    SET @minutosDia = 420 + (ABS(CHECKSUM(NEWID())) % 660);  -- entre 07:00 y 18:00
+    SET @fechaReserva = DATEADD(MINUTE, @minutosDia, CAST(DATEADD(DAY, -@diasAtras, CAST(GETDATE() AS DATE)) AS DATETIME2));
+
+    SET @random = ABS(CHECKSUM(NEWID())) % 100;
+
+    SET @estado =
+        CASE
+            WHEN @random < 68 THEN 'ATENDIDA'
+            WHEN @random < 80 THEN 'AUSENTE'
+            WHEN @random < 90 THEN 'CANCELADA'
+            ELSE 'RESERVADA'
+        END;
+
+    SET @prioridad =
+        CASE
+            WHEN @random % 10 < 2 THEN 'ALTA'
+            WHEN @random % 10 < 6 THEN 'MEDIA'
+            ELSE 'BAJA'
+        END;
+
+    SET @canal =
+        CASE @random % 4
+            WHEN 0 THEN 'VENTANILLA'
+            WHEN 1 THEN 'WEB'
+            WHEN 2 THEN 'REFERENCIA'
+            ELSE 'CALLCENTER'
+        END;
+
+    SET @fechaAtencion = NULL;
+    SET @tiempoEspera = NULL;
+    SET @motivoReprogramacion = NULL;
+    SET @resultadoAtencion = NULL;
+    SET @indicaciones = NULL;
+    SET @diagnostico = NULL;
+
+    IF @estado = 'ATENDIDA'
+    BEGIN
+        SET @tiempoEspera = 10 + ABS(CHECKSUM(NEWID())) % 240;
+        SET @fechaAtencion = DATEADD(MINUTE, @tiempoEspera, @fechaReserva);
+
+        SET @resultadoAtencion =
+            CASE ABS(CHECKSUM(NEWID())) % 5
+                WHEN 0 THEN 'Consulta resuelta'
+                WHEN 1 THEN 'Control programado'
+                WHEN 2 THEN 'Derivación interna'
+                WHEN 3 THEN 'Tratamiento ambulatorio'
+                ELSE 'Seguimiento clínico'
+            END;
+
+        SET @indicaciones =
+            CASE ABS(CHECKSUM(NEWID())) % 5
+                WHEN 0 THEN 'Reposo y control en 7 días'
+                WHEN 1 THEN 'Exámenes complementarios'
+                WHEN 2 THEN 'Medicación y control'
+                WHEN 3 THEN 'Hidratación y observación'
+                ELSE 'Referencia a especialidad'
+            END;
+
+        SET @diagnostico =
+            CASE ABS(CHECKSUM(NEWID())) % 8
+                WHEN 0 THEN 'IRA'
+                WHEN 1 THEN 'Dengue sospechoso'
+                WHEN 2 THEN 'Control prenatal'
+                WHEN 3 THEN 'Hipertensión'
+                WHEN 4 THEN 'Gastroenteritis'
+                WHEN 5 THEN 'Control pediátrico'
+                WHEN 6 THEN 'Dolor lumbar'
+                ELSE 'Consulta general'
+            END;
+
+        -- introducir calidad imperfecta deliberada
+        IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @resultadoAtencion = NULL;
+        IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @indicaciones = NULL;
+        IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @diagnostico = NULL;
+
+        IF @j IN (66, 144, 388, 721, 999)
+            SET @diagnostico = '  infeccion respiratoria aguda  ';
+
+        IF @j IN (87, 512)
+            SET @resultadoAtencion = 'atencion EXITOSA';
+    END
+    ELSE IF @estado = 'CANCELADA'
+    BEGIN
+        SET @motivoReprogramacion =
+            CASE ABS(CHECKSUM(NEWID())) % 4
+                WHEN 0 THEN 'Paciente solicitó cambio de fecha'
+                WHEN 1 THEN 'Médico en capacitación'
+                WHEN 2 THEN 'Falta de documentación'
+                ELSE 'Cupo administrativo reajustado'
+            END;
+
+        IF ABS(CHECKSUM(NEWID())) % 100 < 5 SET @motivoReprogramacion = NULL;
+    END
+    ELSE IF @estado = 'RESERVADA'
+    BEGIN
+        -- reservas recientes
+        SET @fechaReserva = DATEADD(MINUTE, ABS(CHECKSUM(NEWID())) % 600, CAST(DATEADD(DAY, -(ABS(CHECKSUM(NEWID())) % 15), CAST(GETDATE() AS DATE)) AS DATETIME2));
+    END
+
+    INSERT INTO FichaMedica (
+        codigoFicha, idPaciente, idMedico, idEspecialidad, idHorario, idCentro,
+        fechaHoraReserva, fechaHoraAtencion, estado, prioridad, canalReserva,
+        tiempoEsperaMin, motivoReprogramacion, resultadoAtencion, indicaciones, diagnostico,
+        fechaCreacion, fechaModificacion
+    )
+    VALUES (
+        @codigoFicha, @idPaciente, @idMedico, @idEspecialidad, @idHorario, @idCentro,
+        @fechaReserva, @fechaAtencion, @estado, @prioridad, @canal,
+        @tiempoEspera, @motivoReprogramacion, @resultadoAtencion, @indicaciones, @diagnostico,
+        @fechaReserva, DATEADD(MINUTE, 5, @fechaReserva)
+    );
+
+    SET @j += 1;
+END;
+GO
+
+/* ============================================================
+   6. ÍNDICES ÚTILES PARA CONSULTA
+   ============================================================ */
+
+CREATE INDEX IX_FichaMedica_FechaReserva ON FichaMedica(fechaHoraReserva);
+CREATE INDEX IX_FichaMedica_Estado_Centro ON FichaMedica(estado, idCentro);
+CREATE INDEX IX_FichaMedica_Especialidad ON FichaMedica(idEspecialidad);
+CREATE INDEX IX_FichaMedica_Paciente ON FichaMedica(idPaciente);
+CREATE INDEX IX_CampanaMedica_Fechas ON CampanaMedica(fechaInicio, fechaFin);
+GO
+
+/* ============================================================
+   7. VALIDACIONES RÁPIDAS
+   ============================================================ */
+
+SELECT 'Rol' AS Tabla, COUNT(*) AS Registros FROM Rol
+UNION ALL
+SELECT 'Usuario', COUNT(*) FROM Usuario
+UNION ALL
+SELECT 'Geografia', COUNT(*) FROM Geografia
+UNION ALL
+SELECT 'CentroSalud', COUNT(*) FROM CentroSalud
+UNION ALL
+SELECT 'Administrador', COUNT(*) FROM Administrador
+UNION ALL
+SELECT 'Especialidad', COUNT(*) FROM Especialidad
+UNION ALL
+SELECT 'Paciente', COUNT(*) FROM Paciente
+UNION ALL
+SELECT 'Medico', COUNT(*) FROM Medico
+UNION ALL
+SELECT 'HorarioMedico', COUNT(*) FROM HorarioMedico
+UNION ALL
+SELECT 'CampanaMedica', COUNT(*) FROM CampanaMedica
+UNION ALL
+SELECT 'FichaMedica', COUNT(*) FROM FichaMedica;
+
+SELECT TOP 20 *
+FROM FichaMedica
+ORDER BY fechaHoraReserva DESC;
+GO

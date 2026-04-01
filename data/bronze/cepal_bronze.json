@@ -1,0 +1,3131 @@
+{
+  "header": {
+    "name": "uneclac cepalstat api",
+    "version": "1.9.13",
+    "success": true,
+    "machine": "03",
+    "context": "public",
+    "code": 200,
+    "message": "",
+    "timestamp": 1775063032
+  },
+  "body": {
+    "metadata": {
+      "indicator_id": 2205,
+      "indicator_name": "Producto interno bruto (PIB) total anual por habitante a precios corrientes en dólares",
+      "theme": "Estadísticas e Indicadores Económicos",
+      "area": "Cuentas nacionales anuales en dólares",
+      "note": "",
+      "unit": "Dólares por habitante a precios corrientes",
+      "data_features": "",
+      "definition": "Relación entre el valor total de todos los bienes y servicios finales generados durante un año por un país a precios de mercado para cada año  y el número de sus habitantes en ese año. Las cifras se expresan en dólares de Estados Unidos, utilizando el tipo de cambio oficial de la CEPAL.\r\nTotales regionales y subregionales en base a los datos disponibles de los países de la región.",
+      "calculation_methodology": "La metodología adoptada para elaborar las cuentas nacionales de la región a precios corrientes consiste en transformar las series en moneda nacional en dolares corrientes de cada año utilizando el tipo de cambio rf publicado por el Fondo Monetario Internacional. En esta serie, este valor es dividido por la población estimada por la CEPAL, y publicada en CEPALSTAT.",
+      "comments": "",
+      "decimals": 0,
+      "last_update": "Dec 18 2025  2:25PM"
+    },
+    "data": [
+      {
+        "value": "839.3268968215426",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29160
+      },
+      {
+        "value": "902.2581325025409",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29161
+      },
+      {
+        "value": "933.7643495379905",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29162
+      },
+      {
+        "value": "930.1016029967415",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29163
+      },
+      {
+        "value": "951.323422138992",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29164
+      },
+      {
+        "value": "1048.002850377694",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29165
+      },
+      {
+        "value": "1133.197774119275",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29166
+      },
+      {
+        "value": "1192.212968540101",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29167
+      },
+      {
+        "value": "1255.501006883124",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29168
+      },
+      {
+        "value": "1201.930089276733",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29169
+      },
+      {
+        "value": "1196.498307601751",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29170
+      },
+      {
+        "value": "1139.92677564994",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29171
+      },
+      {
+        "value": "1087.570642135409",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29172
+      },
+      {
+        "value": "1092.559935047695",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29173
+      },
+      {
+        "value": "1165.535956717727",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29174
+      },
+      {
+        "value": "1246.973564278764",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29175
+      },
+      {
+        "value": "1469.511998227172",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29176
+      },
+      {
+        "value": "1655.567411259172",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29177
+      },
+      {
+        "value": "2069.021947686125",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29178
+      },
+      {
+        "value": "2112.358146627912",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29179
+      },
+      {
+        "value": "2353.567594303496",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29180
+      },
+      {
+        "value": "2822.882671668068",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29181
+      },
+      {
+        "value": "3137.610381400309",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29182
+      },
+      {
+        "value": "3494.346555364812",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29183
+      },
+      {
+        "value": "3700.84887698625",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29184
+      },
+      {
+        "value": "3643.526886245546",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29185
+      },
+      {
+        "value": "3689.886914482986",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29186
+      },
+      {
+        "value": "4016.216133594924",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29187
+      },
+      {
+        "value": "4171.142927005058",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29188
+      },
+      {
+        "value": "4165.355692252995",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29189
+      },
+      {
+        "value": "3544.996236651395",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29190
+      },
+      {
+        "value": "3963.565744010331",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29191
+      },
+      {
+        "value": "4168.738962731706",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29192
+      },
+      {
+        "value": "4224.868584133625",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29193
+      },
+      {
+        "value": "4366.994292536579",
+        "source_id": 1753,
+        "notes_ids": "",
+        "iso3": "BOL",
+        "dim_208": 221,
+        "dim_29117": 29194
+      }
+    ],
+    "dimensions": [
+      {
+        "id": 208,
+        "name": "País__ESTANDAR",
+        "order": 0,
+        "position": 2,
+        "members": [
+          {
+            "name": "Alemania",
+            "id": 31769,
+            "in": 0,
+            "order": 2,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Central",
+            "id": 209,
+            "in": 0,
+            "order": 421,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América del Sur",
+            "id": 210,
+            "in": 0,
+            "order": 423,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Latina",
+            "id": 211,
+            "in": 0,
+            "order": 416,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "América Latina (19 países)",
+            "id": 31812,
+            "in": 0,
+            "order": 418,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Latina (20 países)",
+            "id": 31811,
+            "in": 0,
+            "order": 417,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Latina (promedio ponderado)",
+            "id": 43052,
+            "in": 0,
+            "order": 419,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Latina (promedio simple)",
+            "id": 43053,
+            "in": 0,
+            "order": 420,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Latina excepto Cuba",
+            "id": 31805,
+            "in": 0,
+            "order": 415,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "América Latina y el Caribe",
+            "id": 212,
+            "in": 0,
+            "order": 410,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "América Latina y el Caribe (serie nueva)",
+            "id": 54611,
+            "in": 0,
+            "order": 412,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Andorra",
+            "id": 20376,
+            "in": 0,
+            "order": 5,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Angola",
+            "id": 43437,
+            "in": 0,
+            "order": 3,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Anguila",
+            "id": 213,
+            "in": 0,
+            "order": 10,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Antigua y Barbuda",
+            "id": 214,
+            "in": 0,
+            "order": 20,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Argentina",
+            "id": 216,
+            "in": 0,
+            "order": 40,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Aruba",
+            "id": 217,
+            "in": 0,
+            "order": 50,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Asociación Latinoamericana de Integración (ALADI)",
+            "id": 31806,
+            "in": 0,
+            "order": 435,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Australia",
+            "id": 43438,
+            "in": 0,
+            "order": 52,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Austria",
+            "id": 31770,
+            "in": 0,
+            "order": 55,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Bahamas",
+            "id": 218,
+            "in": 0,
+            "order": 60,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Barbados",
+            "id": 219,
+            "in": 0,
+            "order": 70,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Bélgica",
+            "id": 31771,
+            "in": 0,
+            "order": 75,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Belice",
+            "id": 220,
+            "in": 0,
+            "order": 80,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Bermudas",
+            "id": 31799,
+            "in": 0,
+            "order": 85,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Bolivia (Estado Plurinacional de)",
+            "id": 221,
+            "in": 1,
+            "order": 90,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Bonaire",
+            "id": 46571,
+            "in": 0,
+            "order": 95,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Brasil",
+            "id": 222,
+            "in": 0,
+            "order": 100,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Bulgaria",
+            "id": 31772,
+            "in": 0,
+            "order": 105,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Cabo Verde",
+            "id": 43439,
+            "in": 0,
+            "order": 106,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Canadá",
+            "id": 43440,
+            "in": 0,
+            "order": 107,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Caribe neerlandés",
+            "id": 43403,
+            "in": 0,
+            "order": 108,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "CELAC",
+            "id": 85583,
+            "in": 0,
+            "order": 610,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Chile",
+            "id": 224,
+            "in": 0,
+            "order": 110,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "China",
+            "id": 43441,
+            "in": 0,
+            "order": 112,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Chipre",
+            "id": 31773,
+            "in": 0,
+            "order": 115,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Colombia",
+            "id": 225,
+            "in": 0,
+            "order": 120,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Comunidad Andina (CAN)",
+            "id": 31807,
+            "in": 0,
+            "order": 440,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Comunidad del Caribe (CARICOM)",
+            "id": 31810,
+            "in": 0,
+            "order": 460,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Costa Rica",
+            "id": 226,
+            "in": 0,
+            "order": 130,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Croacia",
+            "id": 43442,
+            "in": 0,
+            "order": 135,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Cuba",
+            "id": 249,
+            "in": 0,
+            "order": 140,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Curaçao",
+            "id": 43404,
+            "in": 0,
+            "order": 142,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Dinamarca",
+            "id": 31774,
+            "in": 0,
+            "order": 145,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Dominica",
+            "id": 228,
+            "in": 0,
+            "order": 150,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Ecuador",
+            "id": 229,
+            "in": 0,
+            "order": 160,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Egipto",
+            "id": 43444,
+            "in": 0,
+            "order": 165,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "El Caribe",
+            "id": 223,
+            "in": 0,
+            "order": 430,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "El Salvador",
+            "id": 230,
+            "in": 0,
+            "order": 170,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Escocia",
+            "id": 43445,
+            "in": 0,
+            "order": 172,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Eslovaquia",
+            "id": 31775,
+            "in": 0,
+            "order": 173,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Eslovenia",
+            "id": 31776,
+            "in": 0,
+            "order": 174,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "España",
+            "id": 20378,
+            "in": 0,
+            "order": 175,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Estados Unidos",
+            "id": 43446,
+            "in": 0,
+            "order": 176,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Estonia",
+            "id": 31777,
+            "in": 0,
+            "order": 177,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Europa",
+            "id": 31797,
+            "in": 0,
+            "order": 535,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Ex Antillas Neerlandesas",
+            "id": 215,
+            "in": 0,
+            "order": 178,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Filipinas",
+            "id": 43472,
+            "in": 0,
+            "order": 179,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Finlandia",
+            "id": 31778,
+            "in": 0,
+            "order": 180,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Francia",
+            "id": 31779,
+            "in": 0,
+            "order": 182,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Granada",
+            "id": 234,
+            "in": 0,
+            "order": 183,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Grecia",
+            "id": 31780,
+            "in": 0,
+            "order": 185,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Guadalupe",
+            "id": 31800,
+            "in": 0,
+            "order": 188,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Guatemala",
+            "id": 235,
+            "in": 0,
+            "order": 190,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Guayana Francesa",
+            "id": 43448,
+            "in": 0,
+            "order": 205,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Guinea Bissau",
+            "id": 43449,
+            "in": 0,
+            "order": 207,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Guyana",
+            "id": 237,
+            "in": 0,
+            "order": 200,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Haití",
+            "id": 238,
+            "in": 0,
+            "order": 210,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Holanda",
+            "id": 43450,
+            "in": 0,
+            "order": 211,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Honduras",
+            "id": 239,
+            "in": 0,
+            "order": 212,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Hungría",
+            "id": 31781,
+            "in": 0,
+            "order": 213,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "India",
+            "id": 43451,
+            "in": 0,
+            "order": 214,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Indonesia",
+            "id": 43452,
+            "in": 0,
+            "order": 215,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Inglaterra",
+            "id": 43468,
+            "in": 0,
+            "order": 217,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Irak",
+            "id": 43454,
+            "in": 0,
+            "order": 220,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Irán",
+            "id": 43455,
+            "in": 0,
+            "order": 221,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Irlanda",
+            "id": 31782,
+            "in": 0,
+            "order": 222,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Islandia",
+            "id": 32283,
+            "in": 0,
+            "order": 223,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Islas Caimán",
+            "id": 20442,
+            "in": 0,
+            "order": 224,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Islas Malvinas",
+            "id": 31801,
+            "in": 0,
+            "order": 226,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Islas Turcas y Caicos",
+            "id": 3272,
+            "in": 0,
+            "order": 228,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Islas Vírgenes Británicas",
+            "id": 243,
+            "in": 0,
+            "order": 230,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Islas Vírgenes de los Estados Unidos",
+            "id": 245,
+            "in": 0,
+            "order": 240,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Israel",
+            "id": 43456,
+            "in": 0,
+            "order": 242,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Italia",
+            "id": 31783,
+            "in": 0,
+            "order": 245,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Jamaica",
+            "id": 246,
+            "in": 0,
+            "order": 250,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Japón",
+            "id": 43457,
+            "in": 0,
+            "order": 251,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Jordania",
+            "id": 43458,
+            "in": 0,
+            "order": 252,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Letonia",
+            "id": 31784,
+            "in": 0,
+            "order": 253,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Líbano",
+            "id": 43459,
+            "in": 0,
+            "order": 254,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Lituania",
+            "id": 31785,
+            "in": 0,
+            "order": 255,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Luxemburgo",
+            "id": 31786,
+            "in": 0,
+            "order": 256,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Malta",
+            "id": 31787,
+            "in": 0,
+            "order": 258,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Marruecos",
+            "id": 43460,
+            "in": 0,
+            "order": 259,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Martinica",
+            "id": 43406,
+            "in": 0,
+            "order": 260,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Mercado Común Centroamericano (MCCA)",
+            "id": 31808,
+            "in": 0,
+            "order": 450,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Mercado Común del Sur (MERCOSUR)",
+            "id": 31809,
+            "in": 0,
+            "order": 445,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Mercado Común del Sur (MERCOSUR), Bolivia (Estado Plurinacional de) y Chile",
+            "id": 46573,
+            "in": 0,
+            "order": 446,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "México",
+            "id": 233,
+            "in": 0,
+            "order": 265,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Montserrat",
+            "id": 236,
+            "in": 0,
+            "order": 270,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Mozambique",
+            "id": 43461,
+            "in": 0,
+            "order": 275,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Mundo",
+            "id": 47707,
+            "in": 0,
+            "order": 2000,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Nicaragua",
+            "id": 240,
+            "in": 0,
+            "order": 280,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Nigeria",
+            "id": 43462,
+            "in": 0,
+            "order": 281,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Noruega",
+            "id": 32284,
+            "in": 0,
+            "order": 282,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "OCDE Organización para la Cooperación y Desarrollo Económico",
+            "id": 77271,
+            "in": 0,
+            "order": 580,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Otros países",
+            "id": 46576,
+            "in": 0,
+            "order": 820,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Otros países costa este América del Sur",
+            "id": 31802,
+            "in": 0,
+            "order": 800,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Otros países costa oeste América del Sur",
+            "id": 31803,
+            "in": 0,
+            "order": 810,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Países Bajos",
+            "id": 31788,
+            "in": 0,
+            "order": 285,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Panamá",
+            "id": 241,
+            "in": 0,
+            "order": 290,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Paraguay",
+            "id": 242,
+            "in": 0,
+            "order": 300,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Perú",
+            "id": 244,
+            "in": 0,
+            "order": 310,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Polonia",
+            "id": 31789,
+            "in": 0,
+            "order": 312,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Portugal",
+            "id": 20377,
+            "in": 0,
+            "order": 315,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Principales Registros Internacionales",
+            "id": 31804,
+            "in": 0,
+            "order": 700,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Puerto Rico",
+            "id": 261,
+            "in": 0,
+            "order": 320,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Reino Unido",
+            "id": 31790,
+            "in": 0,
+            "order": 322,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "República Checa",
+            "id": 31791,
+            "in": 0,
+            "order": 324,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "República de Corea (Corea del Sur)",
+            "id": 43471,
+            "in": 0,
+            "order": 125,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "República Dominicana",
+            "id": 264,
+            "in": 0,
+            "order": 330,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "República Popular Democrática de Corea (Corea del Norte)",
+            "id": 43463,
+            "in": 0,
+            "order": 326,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Rumania",
+            "id": 31792,
+            "in": 0,
+            "order": 335,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Rusia",
+            "id": 43464,
+            "in": 0,
+            "order": 338,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Saint Kitts y Nevis",
+            "id": 257,
+            "in": 0,
+            "order": 340,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "San Martín (parte de los Países Bajos)",
+            "id": 43405,
+            "in": 0,
+            "order": 345,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "San Vicente y las Granadinas",
+            "id": 260,
+            "in": 0,
+            "order": 350,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Santa Lucía",
+            "id": 262,
+            "in": 0,
+            "order": 360,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "SICA",
+            "id": 85582,
+            "in": 0,
+            "order": 600,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Siria",
+            "id": 43465,
+            "in": 0,
+            "order": 362,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Sudáfrica",
+            "id": 43466,
+            "in": 0,
+            "order": 364,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Suecia",
+            "id": 31793,
+            "in": 0,
+            "order": 365,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Suiza",
+            "id": 32285,
+            "in": 0,
+            "order": 367,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Suriname",
+            "id": 263,
+            "in": 0,
+            "order": 370,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Taiwán",
+            "id": 43469,
+            "in": 0,
+            "order": 375,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Trinidad y Tabago",
+            "id": 256,
+            "in": 0,
+            "order": 380,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Turquía",
+            "id": 43530,
+            "in": 0,
+            "order": 382,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Ucrania",
+            "id": 43467,
+            "in": 0,
+            "order": 385,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Unión Europea",
+            "id": 31798,
+            "in": 0,
+            "order": 537,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Unión Europea (15 países)",
+            "id": 31794,
+            "in": 0,
+            "order": 540,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Unión Europea (25 países)",
+            "id": 31795,
+            "in": 0,
+            "order": 550,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Unión Europea (27 países)",
+            "id": 31796,
+            "in": 0,
+            "order": 560,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Unión Europea (28 países)",
+            "id": 43529,
+            "in": 0,
+            "order": 570,
+            "parent": 208,
+            "selected": 0
+          },
+          {
+            "name": "Uruguay",
+            "id": 258,
+            "in": 0,
+            "order": 390,
+            "parent": 208,
+            "selected": 1
+          },
+          {
+            "name": "Venezuela (República Bolivariana de)",
+            "id": 259,
+            "in": 0,
+            "order": 400,
+            "parent": 208,
+            "selected": 1
+          }
+        ]
+      },
+      {
+        "id": 29117,
+        "name": "Años__ESTANDAR",
+        "order": 1,
+        "position": 3,
+        "members": [
+          {
+            "name": "1900",
+            "id": 68109,
+            "in": 0,
+            "order": 1900,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1901",
+            "id": 68110,
+            "in": 0,
+            "order": 1901,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1902",
+            "id": 68111,
+            "in": 0,
+            "order": 1902,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1903",
+            "id": 68112,
+            "in": 0,
+            "order": 1903,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1904",
+            "id": 68113,
+            "in": 0,
+            "order": 1904,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1905",
+            "id": 68114,
+            "in": 0,
+            "order": 1905,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1906",
+            "id": 68115,
+            "in": 0,
+            "order": 1906,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1907",
+            "id": 68116,
+            "in": 0,
+            "order": 1907,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1908",
+            "id": 68117,
+            "in": 0,
+            "order": 1908,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1909",
+            "id": 68118,
+            "in": 0,
+            "order": 1909,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1910",
+            "id": 68119,
+            "in": 0,
+            "order": 1910,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1911",
+            "id": 68120,
+            "in": 0,
+            "order": 1911,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1912",
+            "id": 68121,
+            "in": 0,
+            "order": 1912,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1913",
+            "id": 68122,
+            "in": 0,
+            "order": 1913,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1914",
+            "id": 68123,
+            "in": 0,
+            "order": 1914,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1915",
+            "id": 68124,
+            "in": 0,
+            "order": 1915,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1916",
+            "id": 68125,
+            "in": 0,
+            "order": 1916,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1917",
+            "id": 68126,
+            "in": 0,
+            "order": 1917,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1918",
+            "id": 68127,
+            "in": 0,
+            "order": 1918,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1919",
+            "id": 68128,
+            "in": 0,
+            "order": 1919,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1920",
+            "id": 68129,
+            "in": 0,
+            "order": 1920,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1921",
+            "id": 68130,
+            "in": 0,
+            "order": 1921,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1922",
+            "id": 68131,
+            "in": 0,
+            "order": 1922,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1923",
+            "id": 68132,
+            "in": 0,
+            "order": 1923,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1924",
+            "id": 68133,
+            "in": 0,
+            "order": 1924,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1925",
+            "id": 68134,
+            "in": 0,
+            "order": 1925,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1926",
+            "id": 68135,
+            "in": 0,
+            "order": 1926,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1927",
+            "id": 68136,
+            "in": 0,
+            "order": 1927,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1928",
+            "id": 68137,
+            "in": 0,
+            "order": 1928,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1929",
+            "id": 68138,
+            "in": 0,
+            "order": 1929,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1930",
+            "id": 68139,
+            "in": 0,
+            "order": 1930,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1931",
+            "id": 68140,
+            "in": 0,
+            "order": 1931,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1932",
+            "id": 68141,
+            "in": 0,
+            "order": 1932,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1933",
+            "id": 68142,
+            "in": 0,
+            "order": 1933,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1934",
+            "id": 68143,
+            "in": 0,
+            "order": 1934,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1935",
+            "id": 68144,
+            "in": 0,
+            "order": 1935,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1936",
+            "id": 68145,
+            "in": 0,
+            "order": 1936,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1937",
+            "id": 68146,
+            "in": 0,
+            "order": 1937,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1938",
+            "id": 68147,
+            "in": 0,
+            "order": 1938,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1939",
+            "id": 68148,
+            "in": 0,
+            "order": 1939,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1940",
+            "id": 68149,
+            "in": 0,
+            "order": 1940,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1941",
+            "id": 68150,
+            "in": 0,
+            "order": 1941,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1942",
+            "id": 68151,
+            "in": 0,
+            "order": 1942,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1943",
+            "id": 68152,
+            "in": 0,
+            "order": 1943,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1944",
+            "id": 68153,
+            "in": 0,
+            "order": 1944,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1945",
+            "id": 68154,
+            "in": 0,
+            "order": 1945,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1946",
+            "id": 68155,
+            "in": 0,
+            "order": 1946,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1947",
+            "id": 68156,
+            "in": 0,
+            "order": 1947,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1948",
+            "id": 68157,
+            "in": 0,
+            "order": 1948,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1949",
+            "id": 68158,
+            "in": 0,
+            "order": 1949,
+            "parent": 29117,
+            "selected": 0
+          },
+          {
+            "name": "1950",
+            "id": 29119,
+            "in": 0,
+            "order": 1950,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1951",
+            "id": 29118,
+            "in": 0,
+            "order": 1951,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1952",
+            "id": 29120,
+            "in": 0,
+            "order": 1952,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1953",
+            "id": 29121,
+            "in": 0,
+            "order": 1953,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1954",
+            "id": 29122,
+            "in": 0,
+            "order": 1954,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1955",
+            "id": 29123,
+            "in": 0,
+            "order": 1955,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1956",
+            "id": 29124,
+            "in": 0,
+            "order": 1956,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1957",
+            "id": 29125,
+            "in": 0,
+            "order": 1957,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1958",
+            "id": 29126,
+            "in": 0,
+            "order": 1958,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1959",
+            "id": 29127,
+            "in": 0,
+            "order": 1959,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1960",
+            "id": 29128,
+            "in": 0,
+            "order": 1960,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1961",
+            "id": 29129,
+            "in": 0,
+            "order": 1961,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1962",
+            "id": 29130,
+            "in": 0,
+            "order": 1962,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1963",
+            "id": 29131,
+            "in": 0,
+            "order": 1963,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1964",
+            "id": 29132,
+            "in": 0,
+            "order": 1964,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1965",
+            "id": 29133,
+            "in": 0,
+            "order": 1965,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1966",
+            "id": 29134,
+            "in": 0,
+            "order": 1966,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1967",
+            "id": 29135,
+            "in": 0,
+            "order": 1967,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1968",
+            "id": 29136,
+            "in": 0,
+            "order": 1968,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1969",
+            "id": 29137,
+            "in": 0,
+            "order": 1969,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1970",
+            "id": 29138,
+            "in": 0,
+            "order": 1970,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1971",
+            "id": 29139,
+            "in": 0,
+            "order": 1971,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1972",
+            "id": 29140,
+            "in": 0,
+            "order": 1972,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1973",
+            "id": 29141,
+            "in": 0,
+            "order": 1973,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1974",
+            "id": 29142,
+            "in": 0,
+            "order": 1974,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1975",
+            "id": 29143,
+            "in": 0,
+            "order": 1975,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1976",
+            "id": 29144,
+            "in": 0,
+            "order": 1976,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1977",
+            "id": 29145,
+            "in": 0,
+            "order": 1977,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1978",
+            "id": 29146,
+            "in": 0,
+            "order": 1978,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1979",
+            "id": 29147,
+            "in": 0,
+            "order": 1979,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1980",
+            "id": 29150,
+            "in": 0,
+            "order": 1980,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1981",
+            "id": 29151,
+            "in": 0,
+            "order": 1981,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1982",
+            "id": 29152,
+            "in": 0,
+            "order": 1982,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1983",
+            "id": 29153,
+            "in": 0,
+            "order": 1983,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1984",
+            "id": 29154,
+            "in": 0,
+            "order": 1984,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1985",
+            "id": 29155,
+            "in": 0,
+            "order": 1985,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1986",
+            "id": 29156,
+            "in": 0,
+            "order": 1986,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1987",
+            "id": 29157,
+            "in": 0,
+            "order": 1987,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1988",
+            "id": 29158,
+            "in": 0,
+            "order": 1988,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1989",
+            "id": 29159,
+            "in": 0,
+            "order": 1989,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1990",
+            "id": 29160,
+            "in": 1,
+            "order": 1990,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1991",
+            "id": 29161,
+            "in": 1,
+            "order": 1991,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1992",
+            "id": 29162,
+            "in": 1,
+            "order": 1992,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1993",
+            "id": 29163,
+            "in": 1,
+            "order": 1993,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1994",
+            "id": 29164,
+            "in": 1,
+            "order": 1994,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1995",
+            "id": 29165,
+            "in": 1,
+            "order": 1995,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1996",
+            "id": 29166,
+            "in": 1,
+            "order": 1996,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1997",
+            "id": 29167,
+            "in": 1,
+            "order": 1997,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1998",
+            "id": 29168,
+            "in": 1,
+            "order": 1998,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "1999",
+            "id": 29169,
+            "in": 1,
+            "order": 1999,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2000",
+            "id": 29170,
+            "in": 1,
+            "order": 2000,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2001",
+            "id": 29171,
+            "in": 1,
+            "order": 2001,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2002",
+            "id": 29172,
+            "in": 1,
+            "order": 2002,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2003",
+            "id": 29173,
+            "in": 1,
+            "order": 2003,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2004",
+            "id": 29174,
+            "in": 1,
+            "order": 2004,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2005",
+            "id": 29175,
+            "in": 1,
+            "order": 2005,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2006",
+            "id": 29176,
+            "in": 1,
+            "order": 2006,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2007",
+            "id": 29177,
+            "in": 1,
+            "order": 2007,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2008",
+            "id": 29178,
+            "in": 1,
+            "order": 2008,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2009",
+            "id": 29179,
+            "in": 1,
+            "order": 2009,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2010",
+            "id": 29180,
+            "in": 1,
+            "order": 2010,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2011",
+            "id": 29181,
+            "in": 1,
+            "order": 2011,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2012",
+            "id": 29182,
+            "in": 1,
+            "order": 2012,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2013",
+            "id": 29183,
+            "in": 1,
+            "order": 2013,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2014",
+            "id": 29184,
+            "in": 1,
+            "order": 2014,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2015",
+            "id": 29185,
+            "in": 1,
+            "order": 2015,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2016",
+            "id": 29186,
+            "in": 1,
+            "order": 2016,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2017",
+            "id": 29187,
+            "in": 1,
+            "order": 2017,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2018",
+            "id": 29188,
+            "in": 1,
+            "order": 2018,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2019",
+            "id": 29189,
+            "in": 1,
+            "order": 2019,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2020",
+            "id": 29190,
+            "in": 1,
+            "order": 2020,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2021",
+            "id": 29191,
+            "in": 1,
+            "order": 2021,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2022",
+            "id": 29192,
+            "in": 1,
+            "order": 2022,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2023",
+            "id": 29193,
+            "in": 1,
+            "order": 2023,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2024",
+            "id": 29194,
+            "in": 1,
+            "order": 2024,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2025",
+            "id": 29195,
+            "in": 0,
+            "order": 2025,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2026",
+            "id": 29196,
+            "in": 0,
+            "order": 2026,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2027",
+            "id": 29197,
+            "in": 0,
+            "order": 2027,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2028",
+            "id": 29198,
+            "in": 0,
+            "order": 2028,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2029",
+            "id": 29199,
+            "in": 0,
+            "order": 2029,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2030",
+            "id": 29200,
+            "in": 0,
+            "order": 2030,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2031",
+            "id": 29201,
+            "in": 0,
+            "order": 2031,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2032",
+            "id": 29202,
+            "in": 0,
+            "order": 2032,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2033",
+            "id": 29203,
+            "in": 0,
+            "order": 2033,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2034",
+            "id": 29204,
+            "in": 0,
+            "order": 2034,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2035",
+            "id": 29205,
+            "in": 0,
+            "order": 2035,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2036",
+            "id": 29206,
+            "in": 0,
+            "order": 2036,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2037",
+            "id": 29207,
+            "in": 0,
+            "order": 2037,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2038",
+            "id": 29208,
+            "in": 0,
+            "order": 2038,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2039",
+            "id": 29209,
+            "in": 0,
+            "order": 2039,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2040",
+            "id": 29210,
+            "in": 0,
+            "order": 2040,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2041",
+            "id": 29211,
+            "in": 0,
+            "order": 2041,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2042",
+            "id": 29212,
+            "in": 0,
+            "order": 2042,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2043",
+            "id": 29213,
+            "in": 0,
+            "order": 2043,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2044",
+            "id": 29214,
+            "in": 0,
+            "order": 2044,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2045",
+            "id": 29215,
+            "in": 0,
+            "order": 2045,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2046",
+            "id": 29216,
+            "in": 0,
+            "order": 2046,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2047",
+            "id": 29217,
+            "in": 0,
+            "order": 2047,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2048",
+            "id": 29218,
+            "in": 0,
+            "order": 2048,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2049",
+            "id": 29219,
+            "in": 0,
+            "order": 2049,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2050",
+            "id": 29220,
+            "in": 0,
+            "order": 2050,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2051",
+            "id": 32096,
+            "in": 0,
+            "order": 2051,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2052",
+            "id": 32097,
+            "in": 0,
+            "order": 2052,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2053",
+            "id": 32098,
+            "in": 0,
+            "order": 2053,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2054",
+            "id": 32099,
+            "in": 0,
+            "order": 2054,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2055",
+            "id": 32100,
+            "in": 0,
+            "order": 2055,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2056",
+            "id": 32101,
+            "in": 0,
+            "order": 2056,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2057",
+            "id": 32102,
+            "in": 0,
+            "order": 2057,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2058",
+            "id": 32103,
+            "in": 0,
+            "order": 2058,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2059",
+            "id": 32104,
+            "in": 0,
+            "order": 2059,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2060",
+            "id": 32105,
+            "in": 0,
+            "order": 2060,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2061",
+            "id": 32106,
+            "in": 0,
+            "order": 2061,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2062",
+            "id": 32107,
+            "in": 0,
+            "order": 2062,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2063",
+            "id": 32108,
+            "in": 0,
+            "order": 2063,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2064",
+            "id": 32109,
+            "in": 0,
+            "order": 2064,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2065",
+            "id": 32110,
+            "in": 0,
+            "order": 2065,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2066",
+            "id": 32111,
+            "in": 0,
+            "order": 2066,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2067",
+            "id": 32112,
+            "in": 0,
+            "order": 2067,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2068",
+            "id": 32113,
+            "in": 0,
+            "order": 2068,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2069",
+            "id": 32114,
+            "in": 0,
+            "order": 2069,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2070",
+            "id": 32115,
+            "in": 0,
+            "order": 2070,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2071",
+            "id": 32116,
+            "in": 0,
+            "order": 2071,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2072",
+            "id": 32117,
+            "in": 0,
+            "order": 2072,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2073",
+            "id": 32118,
+            "in": 0,
+            "order": 2073,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2074",
+            "id": 32119,
+            "in": 0,
+            "order": 2074,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2075",
+            "id": 32120,
+            "in": 0,
+            "order": 2075,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2076",
+            "id": 32121,
+            "in": 0,
+            "order": 2076,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2077",
+            "id": 32122,
+            "in": 0,
+            "order": 2077,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2078",
+            "id": 32123,
+            "in": 0,
+            "order": 2078,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2079",
+            "id": 32124,
+            "in": 0,
+            "order": 2079,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2080",
+            "id": 32125,
+            "in": 0,
+            "order": 2080,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2081",
+            "id": 32126,
+            "in": 0,
+            "order": 2081,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2082",
+            "id": 32127,
+            "in": 0,
+            "order": 2082,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2083",
+            "id": 32128,
+            "in": 0,
+            "order": 2083,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2084",
+            "id": 32129,
+            "in": 0,
+            "order": 2084,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2085",
+            "id": 32130,
+            "in": 0,
+            "order": 2085,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2086",
+            "id": 32131,
+            "in": 0,
+            "order": 2086,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2087",
+            "id": 32132,
+            "in": 0,
+            "order": 2087,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2088",
+            "id": 32133,
+            "in": 0,
+            "order": 2088,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2089",
+            "id": 32134,
+            "in": 0,
+            "order": 2089,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2090",
+            "id": 32135,
+            "in": 0,
+            "order": 2090,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2091",
+            "id": 32136,
+            "in": 0,
+            "order": 2091,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2092",
+            "id": 32137,
+            "in": 0,
+            "order": 2092,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2093",
+            "id": 32138,
+            "in": 0,
+            "order": 2093,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2094",
+            "id": 32139,
+            "in": 0,
+            "order": 2094,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2095",
+            "id": 32140,
+            "in": 0,
+            "order": 2095,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2096",
+            "id": 32141,
+            "in": 0,
+            "order": 2096,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2097",
+            "id": 32142,
+            "in": 0,
+            "order": 2097,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2098",
+            "id": 32143,
+            "in": 0,
+            "order": 2098,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2099",
+            "id": 32144,
+            "in": 0,
+            "order": 2099,
+            "parent": 29117,
+            "selected": 1
+          },
+          {
+            "name": "2100",
+            "id": 32145,
+            "in": 0,
+            "order": 2100,
+            "parent": 29117,
+            "selected": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": 1753,
+        "description": "Estimaciones propias con base en fuentes oficiales",
+        "publication_url": "",
+        "organization_acronym": "CEPAL",
+        "organization_name": "Comisión Económica para América Latina y el Caribe",
+        "organization_url": "http://www.cepal.org"
+      }
+    ],
+    "footnotes": [],
+    "credits": [
+      {
+        "id": 0,
+        "description": "2026-04-01"
+      },
+      {
+        "id": 1,
+        "description": "CEPALSTAT"
+      },
+      {
+        "id": 2,
+        "description": "Comisión Económica para América Latina y el Caribe – CEPAL"
+      },
+      {
+        "id": 3,
+        "description": "Naciones Unidas"
+      }
+    ]
+  },
+  "footer": {
+    "records": 35,
+    "elapsed_time": "0.05650",
+    "ip": "181.188.149.18",
+    "query": "http://api-cepalstat.cepal.org/cepalstat/api/v1/indicator/2205/data?members=221&lang=es&format=json"
+  }
+}
