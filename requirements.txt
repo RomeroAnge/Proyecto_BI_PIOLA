@@ -3,3 +3,5 @@ requests
 sqlalchemy
 pyodbc
 python-dotenv
+streamlit
+plotly

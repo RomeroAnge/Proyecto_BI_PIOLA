@@ -5,11 +5,11 @@
   "nulos_fichas": {
     "codigoFicha": 0,
     "fechaHoraReserva": 0,
-    "fechaHoraAtencion": 349,
+    "fechaHoraAtencion": 413,
     "estado": 0,
     "prioridad": 0,
     "canalReserva": 0,
-    "tiempoEsperaMin": 349,
+    "tiempoEsperaMin": 413,
     "motivoReprogramacion": 0,
     "resultadoAtencion": 0,
     "indicaciones": 0,
