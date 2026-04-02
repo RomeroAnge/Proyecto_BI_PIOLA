@@ -3,11 +3,11 @@
     "name": "uneclac cepalstat api",
     "version": "1.9.13",
     "success": true,
-    "machine": "03",
+    "machine": "02",
     "context": "public",
     "code": 200,
     "message": "",
-    "timestamp": 1775148179
+    "timestamp": 1775171064
   },
   "body": {
     "metadata": {
@@ -3124,8 +3124,8 @@
   },
   "footer": {
     "records": 35,
-    "elapsed_time": "0.05493",
-    "ip": "181.188.150.34",
+    "elapsed_time": "0.05726",
+    "ip": "181.115.161.63",
     "query": "http://api-cepalstat.cepal.org/cepalstat/api/v1/indicator/2205/data?members=221&lang=es&format=json"
   }
 }

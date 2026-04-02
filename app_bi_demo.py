@@ -50,15 +50,14 @@ def cargar_datos():
     df_saturacion = pd.read_sql("SELECT * FROM vw_saturacion_diaria", engine)
     df_ausentismo = pd.read_sql("SELECT * FROM vw_ausentismo_especialidad", engine)
     df_mensual = pd.read_sql("SELECT * FROM vw_serie_mensual", engine)
-    df_campanas = pd.read_sql("SELECT * FROM vw_campanas_resumen", engine)
 
     df_atenciones["fecha"] = pd.to_datetime(df_atenciones["fecha"], errors="coerce")
     df_saturacion["fecha"] = pd.to_datetime(df_saturacion["fecha"], errors="coerce")
 
-    return df_atenciones, df_kpis, df_saturacion, df_ausentismo, df_mensual, df_campanas
+    return df_atenciones, df_kpis, df_saturacion, df_ausentismo, df_mensual
 
 
-df_atenciones, df_kpis, df_saturacion, df_ausentismo, df_mensual, df_campanas = cargar_datos()
+df_atenciones, df_kpis, df_saturacion, df_ausentismo, df_mensual = cargar_datos()
 
 st.title("DEMO DAY BI — Resiliencia Operativa en Salud Pública")
 st.markdown(
@@ -85,7 +84,6 @@ if df_filtrado.empty:
     st.warning("No hay datos para los filtros seleccionados.")
     st.stop()
 
-# KPIs filtrados
 total_fichas = int(df_filtrado["conteoFicha"].sum())
 total_ausentes = int(df_filtrado["esAusente"].sum())
 total_cerradas = int(df_filtrado[df_filtrado["estado"].isin(["ATENDIDA", "AUSENTE", "CANCELADA"])]["conteoFicha"].sum())
@@ -104,7 +102,6 @@ c3.metric("Índice de Saturación Promedio (%)", indice_saturacion)
 
 st.markdown("---")
 
-# Serie mensual
 serie = df_filtrado.groupby(["anio", "mes"], as_index=False).agg(
     total_fichas=("conteoFicha", "sum"),
     total_atendidas=("esAtendida", "sum"),
@@ -154,34 +151,19 @@ with col2:
 
 st.markdown("---")
 
-col3, col4 = st.columns(2)
+ce_anual = df_filtrado.groupby("anio", as_index=False).agg(
+    total_fichas=("conteoFicha", "sum"),
+    valor_cepal=("valor_cepal", "max")
+)
 
-with col3:
-    ce_anual = df_filtrado.groupby("anio", as_index=False).agg(
-        total_fichas=("conteoFicha", "sum"),
-        valor_cepal=("valor_cepal", "max")
-    )
-
-    fig_cepal = px.line(
-        ce_anual,
-        x="anio",
-        y=["total_fichas", "valor_cepal"],
-        markers=True,
-        title="Demanda operativa vs contexto CEPAL"
-    )
-    st.plotly_chart(fig_cepal, width='stretch')
-
-with col4:
-    camp_filtradas = df_campanas[df_campanas["centroSalud"].isin(centros_sel)].copy()
-    fig_camp = px.bar(
-        camp_filtradas,
-        x="tipo",
-        y="total_campanas",
-        color="estado",
-        barmode="group",
-        title="Resumen de campañas preventivas"
-    )
-    st.plotly_chart(fig_camp, width='stretch')
+fig_cepal = px.line(
+    ce_anual,
+    x="anio",
+    y=["total_fichas", "valor_cepal"],
+    markers=True,
+    title="Demanda operativa vs contexto CEPAL"
+)
+st.plotly_chart(fig_cepal, width='stretch')
 
 st.markdown("---")
 st.subheader("Detalle de registros filtrados")
