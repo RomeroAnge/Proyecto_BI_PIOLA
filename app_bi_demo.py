@@ -17,20 +17,20 @@ st.set_page_config(
 
 # ── Paleta de colores ────────────────────────────────────────────────────────
 COLORS = {
-    "primary":    "#6366F1",
-    "secondary":  "#8B5CF6",
-    "accent":     "#06B6D4",
+    "primary":    "#4F46E5",
+    "secondary":  "#7C3AED",
+    "accent":     "#0EA5E9",
     "success":    "#10B981",
     "warning":    "#F59E0B",
     "danger":     "#EF4444",
-    "bg_dark":    "#0F172A",
-    "bg_card":    "#1E293B",
-    "bg_surface": "#334155",
-    "text":       "#F8FAFC",
-    "text_muted": "#94A3B8",
+    "bg_dark":    "#F1F5F9",
+    "bg_card":    "#FFFFFF",
+    "bg_surface": "#E2E8F0",
+    "text":       "#1E293B",
+    "text_muted": "#64748B",
 }
 
-CHART_PALETTE = ["#6366F1", "#06B6D4", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6", "#EC4899", "#14B8A6"]
+CHART_PALETTE = ["#4F46E5", "#0EA5E9", "#10B981", "#F59E0B", "#EF4444", "#7C3AED", "#EC4899", "#14B8A6"]
 
 # ── SVG Icon helper ──────────────────────────────────────────────────────────
 # Inline SVG icons (Lucide style) for a clean professional look without emojis.
@@ -137,15 +137,16 @@ st.markdown(f"""
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     .stApp {{
-        background: linear-gradient(135deg, {COLORS["bg_dark"]} 0%, #1a1a2e 50%, {COLORS["bg_dark"]} 100%);
+        background: {COLORS["bg_dark"]};
         font-family: 'Inter', sans-serif;
         color: {COLORS["text"]};
     }}
 
     /* ── Sidebar ── */
     section[data-testid="stSidebar"] {{
-        background: linear-gradient(180deg, #1E1B4B 0%, #0F172A 100%) !important;
-        border-right: 1px solid rgba(99, 102, 241, 0.2);
+        background: #FFFFFF !important;
+        border-right: 1px solid #E2E8F0;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.04);
     }}
     section[data-testid="stSidebar"] .stMarkdown p,
     section[data-testid="stSidebar"] .stMarkdown h1,
@@ -161,19 +162,18 @@ st.markdown(f"""
         letter-spacing: 0.05em;
     }}
 
-    /* ── Glassmorphism cards ── */
+    /* ── Clean cards ── */
     .glass-card {{
-        background: rgba(30, 41, 59, 0.6);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(99, 102, 241, 0.15);
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
         border-radius: 16px;
         padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }}
     .glass-card:hover {{
         transform: translateY(-2px);
-        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+        box-shadow: 0 8px 24px rgba(79,70,229,0.10);
     }}
 
     /* ── KPI Cards ── */
@@ -186,13 +186,18 @@ st.markdown(f"""
     .kpi-card {{
         flex: 1;
         min-width: 200px;
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(99, 102, 241, 0.15);
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
         border-radius: 16px;
         padding: 1.25rem 1.5rem;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }}
+    .kpi-card:hover {{
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }}
     .kpi-card::before {{
         content: '';
@@ -201,8 +206,8 @@ st.markdown(f"""
         height: 3px;
         border-radius: 16px 16px 0 0;
     }}
-    .kpi-card.indigo::before {{ background: linear-gradient(90deg, #6366F1, #818CF8); }}
-    .kpi-card.cyan::before {{ background: linear-gradient(90deg, #06B6D4, #22D3EE); }}
+    .kpi-card.indigo::before {{ background: linear-gradient(90deg, #4F46E5, #818CF8); }}
+    .kpi-card.cyan::before {{ background: linear-gradient(90deg, #0EA5E9, #38BDF8); }}
     .kpi-card.emerald::before {{ background: linear-gradient(90deg, #10B981, #34D399); }}
     .kpi-card.amber::before {{ background: linear-gradient(90deg, #F59E0B, #FCD34D); }}
     .kpi-card.rose::before {{ background: linear-gradient(90deg, #F43F5E, #FB7185); }}
@@ -215,14 +220,14 @@ st.markdown(f"""
         width: 42px;
         height: 42px;
         border-radius: 12px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.06);
+        background: #F1F5F9;
+        border: 1px solid #E2E8F0;
     }}
-    .kpi-card.indigo .kpi-icon {{ background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.15); }}
-    .kpi-card.cyan .kpi-icon {{ background: rgba(6,182,212,0.1); border-color: rgba(6,182,212,0.15); }}
-    .kpi-card.emerald .kpi-icon {{ background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.15); }}
-    .kpi-card.amber .kpi-icon {{ background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.15); }}
-    .kpi-card.rose .kpi-icon {{ background: rgba(244,63,94,0.1); border-color: rgba(244,63,94,0.15); }}
+    .kpi-card.indigo .kpi-icon {{ background: rgba(79,70,229,0.08); border-color: rgba(79,70,229,0.15); }}
+    .kpi-card.cyan .kpi-icon {{ background: rgba(14,165,233,0.08); border-color: rgba(14,165,233,0.15); }}
+    .kpi-card.emerald .kpi-icon {{ background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15); }}
+    .kpi-card.amber .kpi-icon {{ background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.15); }}
+    .kpi-card.rose .kpi-icon {{ background: rgba(244,63,94,0.08); border-color: rgba(244,63,94,0.15); }}
 
     .kpi-label {{
         color: {COLORS["text_muted"]};
@@ -238,11 +243,11 @@ st.markdown(f"""
         line-height: 1.1;
         margin-bottom: 0.25rem;
     }}
-    .kpi-value.indigo {{ color: #818CF8; }}
-    .kpi-value.cyan {{ color: #22D3EE; }}
-    .kpi-value.emerald {{ color: #34D399; }}
-    .kpi-value.amber {{ color: #FCD34D; }}
-    .kpi-value.rose {{ color: #FB7185; }}
+    .kpi-value.indigo {{ color: #4F46E5; }}
+    .kpi-value.cyan {{ color: #0EA5E9; }}
+    .kpi-value.emerald {{ color: #10B981; }}
+    .kpi-value.amber {{ color: #D97706; }}
+    .kpi-value.rose {{ color: #E11D48; }}
 
     .kpi-sub {{
         color: {COLORS["text_muted"]};
@@ -259,7 +264,7 @@ st.markdown(f"""
     .dashboard-header h1 {{
         font-size: 2.25rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #818CF8 0%, #06B6D4 50%, #34D399 100%);
+        background: linear-gradient(135deg, #4F46E5 0%, #0EA5E9 50%, #10B981 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -278,8 +283,8 @@ st.markdown(f"""
         display: inline-flex;
         align-items: center;
         gap: 0.4rem;
-        background: rgba(99, 102, 241, 0.15);
-        color: #818CF8;
+        background: rgba(79, 70, 229, 0.08);
+        color: #4F46E5;
         font-size: 0.72rem;
         font-weight: 600;
         padding: 0.3rem 0.85rem;
@@ -287,7 +292,7 @@ st.markdown(f"""
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 0.75rem;
-        border: 1px solid rgba(99, 102, 241, 0.25);
+        border: 1px solid rgba(79, 70, 229, 0.15);
     }}
 
     /* ── Section headers ── */
@@ -304,8 +309,8 @@ st.markdown(f"""
         width: 32px;
         height: 32px;
         border-radius: 8px;
-        background: rgba(99,102,241,0.1);
-        border: 1px solid rgba(99,102,241,0.15);
+        background: rgba(79,70,229,0.08);
+        border: 1px solid rgba(79,70,229,0.12);
         flex-shrink: 0;
     }}
     .section-header h3 {{
@@ -318,16 +323,17 @@ st.markdown(f"""
     .section-header .line {{
         flex: 1;
         height: 1px;
-        background: linear-gradient(90deg, rgba(99,102,241,0.3), transparent);
+        background: linear-gradient(90deg, #E2E8F0, transparent);
     }}
 
     /* ── Tabs styling ── */
     .stTabs [data-baseweb="tab-list"] {{
-        background: rgba(30, 41, 59, 0.5);
+        background: #FFFFFF;
         border-radius: 12px;
         padding: 0.25rem;
         gap: 0.25rem;
-        border: 1px solid rgba(99, 102, 241, 0.1);
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     }}
     .stTabs [data-baseweb="tab"] {{
         border-radius: 10px;
@@ -337,8 +343,8 @@ st.markdown(f"""
         padding: 0.5rem 1.25rem;
     }}
     .stTabs [aria-selected="true"] {{
-        background: rgba(99, 102, 241, 0.2) !important;
-        color: #818CF8 !important;
+        background: rgba(79, 70, 229, 0.1) !important;
+        color: #4F46E5 !important;
         border: none !important;
     }}
     .stTabs [data-baseweb="tab-highlight"] {{ display: none; }}
@@ -346,10 +352,11 @@ st.markdown(f"""
 
     /* ── Plotly chart containers ── */
     .stPlotlyChart {{
-        background: rgba(30, 41, 59, 0.4);
-        border: 1px solid rgba(99, 102, 241, 0.1);
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
         border-radius: 16px;
         padding: 0.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }}
 
     .stDataFrame {{ border-radius: 12px; overflow: hidden; }}
@@ -357,7 +364,7 @@ st.markdown(f"""
     hr {{
         border: none;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(99,102,241,0.2), transparent);
+        background: linear-gradient(90deg, transparent, #E2E8F0, transparent);
         margin: 1.5rem 0;
     }}
 
@@ -367,7 +374,7 @@ st.markdown(f"""
     .sidebar-brand {{
         text-align: center;
         padding: 1.25rem 0 1.5rem 0;
-        border-bottom: 1px solid rgba(99,102,241,0.15);
+        border-bottom: 1px solid #E2E8F0;
         margin-bottom: 1.5rem;
     }}
     .sidebar-brand .logo-wrap {{
@@ -377,8 +384,8 @@ st.markdown(f"""
         width: 56px;
         height: 56px;
         border-radius: 16px;
-        background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(6,182,212,0.15));
-        border: 1px solid rgba(99,102,241,0.25);
+        background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(14,165,233,0.08));
+        border: 1px solid rgba(79,70,229,0.15);
         margin-bottom: 0.6rem;
     }}
     .sidebar-brand .name {{
@@ -410,10 +417,10 @@ st.markdown(f"""
         color: {COLORS["text_muted"]};
         font-size: 0.75rem;
         padding: 2rem 0 1rem;
-        border-top: 1px solid rgba(99,102,241,0.1);
+        border-top: 1px solid #E2E8F0;
         margin-top: 2rem;
     }}
-    .footer a {{ color: #818CF8; text-decoration: none; }}
+    .footer a {{ color: #4F46E5; text-decoration: none; }}
     .footer .footer-icon {{ display: inline-flex; vertical-align: middle; margin: 0 0.15rem; }}
 
     /* ── Insight card icon ── */
@@ -424,8 +431,8 @@ st.markdown(f"""
         width: 44px;
         height: 44px;
         border-radius: 12px;
-        background: rgba(245,158,11,0.1);
-        border: 1px solid rgba(245,158,11,0.15);
+        background: rgba(245,158,11,0.08);
+        border: 1px solid rgba(245,158,11,0.12);
         flex-shrink: 0;
     }}
 </style>
@@ -435,7 +442,7 @@ st.markdown(f"""
 # ── Plotly theme helper ──────────────────────────────────────────────────────
 def apply_chart_theme(fig, height=420):
     fig.update_layout(
-        template="plotly_dark",
+        template="plotly_white",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         font=dict(family="Inter, sans-serif", color=COLORS["text_muted"], size=12),
@@ -450,12 +457,13 @@ def apply_chart_theme(fig, height=420):
             yanchor="bottom", y=1.02,
             xanchor="right", x=1,
         ),
-        xaxis=dict(gridcolor="rgba(99,102,241,0.07)", zerolinecolor="rgba(99,102,241,0.1)"),
-        yaxis=dict(gridcolor="rgba(99,102,241,0.07)", zerolinecolor="rgba(99,102,241,0.1)"),
+        xaxis=dict(gridcolor="#F1F5F9", zerolinecolor="#E2E8F0"),
+        yaxis=dict(gridcolor="#F1F5F9", zerolinecolor="#E2E8F0"),
         hoverlabel=dict(
-            bgcolor=COLORS["bg_card"],
-            bordercolor="rgba(99,102,241,0.3)",
+            bgcolor="#FFFFFF",
+            bordercolor="#E2E8F0",
             font_size=12, font_family="Inter, sans-serif",
+            font_color="#1E293B",
         ),
     )
     return fig
@@ -664,7 +672,7 @@ with tab1:
     ))
     apply_chart_theme(fig_serie, height=440)
     fig_serie.update_layout(title="Tendencia mensual: fichas, atenciones, ausencias y cancelaciones")
-    st.plotly_chart(fig_serie, use_container_width=True)
+    st.plotly_chart(fig_serie, width="stretch")
 
     col_dist1, col_dist2 = st.columns(2)
 
@@ -688,7 +696,7 @@ with tab1:
         apply_chart_theme(fig_donut, height=380)
         fig_donut.update_traces(textposition="inside", textinfo="percent+label", textfont_size=12)
         fig_donut.update_layout(title="Proporción de estados de fichas médicas", showlegend=False)
-        st.plotly_chart(fig_donut, use_container_width=True)
+        st.plotly_chart(fig_donut, width="stretch")
 
     with col_dist2:
         st.markdown(f"""
@@ -713,7 +721,7 @@ with tab1:
             xaxis_title="Canal", yaxis_title="Total Fichas",
         )
         fig_canal.update_traces(marker_line_width=0, marker_cornerradius=6)
-        st.plotly_chart(fig_canal, use_container_width=True)
+        st.plotly_chart(fig_canal, width="stretch")
 
 
 # ── TAB 2: Centros y Especialidades ──────────────────────────────────────────
@@ -747,7 +755,7 @@ with tab2:
             coloraxis_showscale=False, xaxis_title="Tasa de Ausentismo (%)", yaxis_title="",
         )
         fig_aus.update_traces(marker_cornerradius=4)
-        st.plotly_chart(fig_aus, use_container_width=True)
+        st.plotly_chart(fig_aus, width="stretch")
 
     with col_b:
         st.markdown(f"""
@@ -774,7 +782,7 @@ with tab2:
             coloraxis_showscale=False, xaxis_title="Saturación (%)", yaxis_title="",
         )
         fig_sat.update_traces(marker_cornerradius=4)
-        st.plotly_chart(fig_sat, use_container_width=True)
+        st.plotly_chart(fig_sat, width="stretch")
 
     st.markdown(f"""
     <div class="section-header">
@@ -800,7 +808,7 @@ with tab2:
         coloraxis_showscale=False, xaxis_title="", yaxis_title="Minutos",
     )
     fig_espera.update_traces(marker_cornerradius=6)
-    st.plotly_chart(fig_espera, use_container_width=True)
+    st.plotly_chart(fig_espera, width="stretch")
 
 
 # ── TAB 3: Contexto CEPAL ───────────────────────────────────────────────────
@@ -834,11 +842,11 @@ with tab3:
     apply_chart_theme(fig_cepal, height=460)
     fig_cepal.update_layout(
         title="Comparativa anual: volumen de fichas médicas vs. indicador CEPALSTAT",
-        yaxis=dict(title="Total Fichas", side="left", gridcolor="rgba(99,102,241,0.07)"),
-        yaxis2=dict(title="Valor CEPAL", overlaying="y", side="right", gridcolor="rgba(99,102,241,0.07)"),
+        yaxis=dict(title="Total Fichas", side="left", gridcolor="#F1F5F9"),
+        yaxis2=dict(title="Valor CEPAL", overlaying="y", side="right", gridcolor="#F1F5F9"),
         barmode="overlay",
     )
-    st.plotly_chart(fig_cepal, use_container_width=True)
+    st.plotly_chart(fig_cepal, width="stretch")
 
     st.markdown(f"""
     <div class="glass-card" style="margin-top: 1rem;">
@@ -882,7 +890,7 @@ with tab4:
             "fecha", "centroSalud", "especialidad", "estado",
             "canalReserva", "tiempoEsperaMin", "edad_aprox", "departamento", "ciudad"
         ]].sort_values("fecha", ascending=False),
-        use_container_width=True,
+        width="stretch",
         height=500,
     )
 
