@@ -757,6 +757,83 @@ with tab2:
         fig_aus.update_traces(marker_cornerradius=4)
         st.plotly_chart(fig_aus, width="stretch")
 
+        # ── Drill-down: Centros por Especialidad ──
+        especialidades_disponibles = sorted(aus_esp["especialidad"].unique().tolist())
+        if especialidades_disponibles:
+            esp_sel = st.selectbox(
+                "🔍 Seleccione una especialidad para ver el desglose por centro:",
+                options=especialidades_disponibles,
+                key="drilldown_esp_ausentismo",
+            )
+
+            df_drill_esp = df_filtrado[df_filtrado["especialidad"] == esp_sel].copy()
+
+            if not df_drill_esp.empty:
+                drill_centro = df_drill_esp.groupby("centroSalud", as_index=False).agg(
+                    total_fichas=("conteoFicha", "sum"),
+                    atendidas=("esAtendida", "sum"),
+                    ausentes=("esAusente", "sum"),
+                    canceladas=("esCancelada", "sum"),
+                    espera_prom=("tiempoEsperaMin", "mean"),
+                )
+                drill_centro["tasa_ausentismo"] = (drill_centro["ausentes"] / drill_centro["total_fichas"] * 100).round(1)
+                drill_centro["tasa_atencion"] = (drill_centro["atendidas"] / drill_centro["total_fichas"] * 100).round(1)
+                drill_centro["espera_prom"] = drill_centro["espera_prom"].round(1)
+                drill_centro = drill_centro.sort_values("tasa_ausentismo", ascending=True)
+
+                fig_drill_esp = px.bar(
+                    drill_centro, x="tasa_ausentismo", y="centroSalud",
+                    orientation="h", color="tasa_ausentismo",
+                    color_continuous_scale=["#10B981", "#F59E0B", "#EF4444"],
+                    hover_data={
+                        "total_fichas": True,
+                        "atendidas": True,
+                        "ausentes": True,
+                        "tasa_atencion": ":.1f",
+                        "tasa_ausentismo": ":.1f",
+                        "espera_prom": ":.1f",
+                    },
+                    labels={
+                        "centroSalud": "Centro de Salud",
+                        "tasa_ausentismo": "Ausentismo %",
+                        "total_fichas": "Total Fichas",
+                        "atendidas": "Atendidas",
+                        "ausentes": "Ausentes",
+                        "tasa_atencion": "Tasa Atención %",
+                        "espera_prom": "Espera Prom (min)",
+                    },
+                )
+                apply_chart_theme(fig_drill_esp, height=max(250, len(drill_centro) * 45))
+                fig_drill_esp.update_layout(
+                    title=f"Ausentismo de {esp_sel} por centro",
+                    coloraxis_showscale=False,
+                    xaxis_title="Tasa de Ausentismo (%)", yaxis_title="",
+                    margin=dict(l=40, r=20, t=50, b=30),
+                )
+                fig_drill_esp.update_traces(marker_cornerradius=4)
+                st.plotly_chart(fig_drill_esp, width="stretch")
+
+                with st.expander("📋 Ver tabla detallada por centro"):
+                    st.dataframe(
+                        drill_centro[["centroSalud", "total_fichas", "atendidas", "ausentes",
+                                      "canceladas", "tasa_atencion", "tasa_ausentismo", "espera_prom"]]
+                        .sort_values("tasa_ausentismo", ascending=False)
+                        .rename(columns={
+                            "centroSalud": "Centro de Salud",
+                            "total_fichas": "Fichas",
+                            "atendidas": "Atendidas",
+                            "ausentes": "Ausentes",
+                            "canceladas": "Canceladas",
+                            "tasa_atencion": "Atención %",
+                            "tasa_ausentismo": "Ausentismo %",
+                            "espera_prom": "Espera (min)",
+                        }),
+                        width="stretch",
+                        hide_index=True,
+                    )
+            else:
+                st.info("No hay datos para esta especialidad con los filtros actuales.")
+
     with col_b:
         st.markdown(f"""
         <div class="section-header">
@@ -783,6 +860,84 @@ with tab2:
         )
         fig_sat.update_traces(marker_cornerradius=4)
         st.plotly_chart(fig_sat, width="stretch")
+
+        # ── Drill-down: Especialidades por Centro ──
+        centros_disponibles = sorted(sat_centro["centroSalud"].unique().tolist())
+        if centros_disponibles:
+            centro_sel = st.selectbox(
+                "🔍 Seleccione un centro para ver el desglose por especialidad:",
+                options=centros_disponibles,
+                key="drilldown_centro_saturacion",
+            )
+
+            df_drill = df_filtrado[df_filtrado["centroSalud"] == centro_sel].copy()
+
+            if not df_drill.empty:
+                drill_esp = df_drill.groupby("especialidad", as_index=False).agg(
+                    total_fichas=("conteoFicha", "sum"),
+                    atendidas=("esAtendida", "sum"),
+                    ausentes=("esAusente", "sum"),
+                    canceladas=("esCancelada", "sum"),
+                    espera_prom=("tiempoEsperaMin", "mean"),
+                )
+                drill_esp["tasa_atencion"] = (drill_esp["atendidas"] / drill_esp["total_fichas"] * 100).round(1)
+                drill_esp["tasa_ausentismo"] = (drill_esp["ausentes"] / drill_esp["total_fichas"] * 100).round(1)
+                drill_esp["espera_prom"] = drill_esp["espera_prom"].round(1)
+                drill_esp = drill_esp.sort_values("total_fichas", ascending=False)
+
+                # Mini bar chart of specialties
+                fig_drill = px.bar(
+                    drill_esp, x="total_fichas", y="especialidad",
+                    orientation="h", color="tasa_ausentismo",
+                    color_continuous_scale=["#10B981", "#F59E0B", "#EF4444"],
+                    hover_data={
+                        "total_fichas": True,
+                        "atendidas": True,
+                        "ausentes": True,
+                        "tasa_atencion": ":.1f",
+                        "tasa_ausentismo": ":.1f",
+                        "espera_prom": ":.1f",
+                    },
+                    labels={
+                        "total_fichas": "Total Fichas",
+                        "especialidad": "Especialidad",
+                        "tasa_ausentismo": "Ausentismo %",
+                        "atendidas": "Atendidas",
+                        "ausentes": "Ausentes",
+                        "tasa_atencion": "Tasa Atención %",
+                        "espera_prom": "Espera Prom (min)",
+                    },
+                )
+                apply_chart_theme(fig_drill, height=max(250, len(drill_esp) * 38))
+                fig_drill.update_layout(
+                    title=f"Especialidades en {centro_sel}",
+                    coloraxis_showscale=False,
+                    xaxis_title="Total Fichas", yaxis_title="",
+                    margin=dict(l=40, r=20, t=50, b=30),
+                )
+                fig_drill.update_traces(marker_cornerradius=4)
+                st.plotly_chart(fig_drill, width="stretch")
+
+                # Summary table inside an expander
+                with st.expander("📋 Ver tabla detallada de especialidades"):
+                    st.dataframe(
+                        drill_esp[["especialidad", "total_fichas", "atendidas", "ausentes",
+                                   "canceladas", "tasa_atencion", "tasa_ausentismo", "espera_prom"]]
+                        .rename(columns={
+                            "especialidad": "Especialidad",
+                            "total_fichas": "Fichas",
+                            "atendidas": "Atendidas",
+                            "ausentes": "Ausentes",
+                            "canceladas": "Canceladas",
+                            "tasa_atencion": "Atención %",
+                            "tasa_ausentismo": "Ausentismo %",
+                            "espera_prom": "Espera (min)",
+                        }),
+                        width="stretch",
+                        hide_index=True,
+                    )
+            else:
+                st.info("No hay datos de atenciones para este centro con los filtros actuales.")
 
     st.markdown(f"""
     <div class="section-header">
